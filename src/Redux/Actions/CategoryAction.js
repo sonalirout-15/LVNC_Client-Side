@@ -14,3 +14,18 @@ export const loadCategoryError = (error) => ({
     type: types.LOAD_CATEGORY_ERROR,
     payload: error
 })
+
+export const getSingleCategoryStart = (categoryData) => ({
+    type: types.GET_SINGLE_CATEGORY_START,
+    payload: categoryData
+})
+
+export const getSingleCategorySuccess = (categoryData) => ({
+    type: types.GET_SINGLE_CATEGORY_SUCCESS,
+    payload: categoryData
+})
+
+export const getSingleCategoryError = (error) => ({
+    type: types.GET_SINGLE_CATEGORY_ERROR,
+    payload: error
+})

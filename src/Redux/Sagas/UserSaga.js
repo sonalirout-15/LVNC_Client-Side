@@ -8,7 +8,21 @@ import * as types from '../ActionTypes/UserActionType';
 } from 'redux-saga/effects';
 import Swal from 'sweetalert2';
 import { createUserApi, userChangePasswordApi, userForgotPasswordApi, userLoginApi, userResetPasswordApi } from '../APIS/UserApi';
-import { createUserError, createUserSuccess, userChangePasswordError, userChangePasswordSuccess, userForgotPasswordError, userForgotPasswordSuccess, userLoginError, userLoginSuccess, userLogoutError, userLogoutStart, userLogoutSuccess, userResetPasswordError, userResetPasswordSuccess } from '../Actions/UserAction';
+import { 
+    createUserError, 
+    createUserSuccess, 
+    userChangePasswordError, 
+    userChangePasswordSuccess, 
+    userForgotPasswordError, 
+    userForgotPasswordSuccess, 
+    userLoginError, 
+    userLoginSuccess, 
+    userLogoutError, 
+    userLogoutStart, 
+    userLogoutSuccess, 
+    userResetPasswordError, 
+    userResetPasswordSuccess 
+} from '../Actions/UserAction';
 
 const Toast = Swal.mixin({
     toast: true,
@@ -23,7 +37,6 @@ export function* onUserLoginStartAsync({ payload }) {
         console.log("PAYLOAD===", response)
         if (response.data.status === 200) {
             localStorage.setItem("USER", response.data.data.token);
-            // localStorage.setItem('ADMINEMAIL',  response.data.userEmail)
             yield put(userLoginSuccess(response.data));
             Toast.fire({
                 icon: "success",
@@ -147,7 +160,7 @@ export function* onCreateUserStartAsync({ payload }) {
             });
         }
     } catch (error) {
-        yield put(createUserError(error.response.data))
+        yield put(createUserError(error.response))
     }
 }
 

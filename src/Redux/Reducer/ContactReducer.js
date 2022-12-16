@@ -1,35 +1,33 @@
-import * as types from '../ActionTypes/SubcategoryActionTypes';
+import * as types from '../ActionTypes/ContactActionType';
 
 const initialState = {
-    subcategories: [],
+    contactUs :[],
     loading: false,
     error: null
 }
 
-
-const subcategoryReducer = (state = initialState, action) => {
+const contactUsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case types.LOAD_SUBCATEGORY_START:
+        case types.CREATE_CONTACTUS_START:
             return {
                 ...state,
                 loading: true
             }
-        case types.LOAD_SUBCATEGORY_SUCCESS:
+        case types.CREATE_CONTACTUS_SUCCESS:
             return {
                 ...state,
-                loading: false,
-                subcategories: action.payload
+                loading: true,
+                contactUs : action.payload
             }
-        case types.LOAD_SUBCATEGORY_ERROR:
+        case types.CREATE_CONTACTUS_ERROR:
             return {
                 ...state,
                 loading: false,
                 error: action.payload
-
             }
         default:
             return state;
     }
 }
 
-export default subcategoryReducer;
+export default contactUsReducer;

@@ -2,6 +2,8 @@ import * as types from '../ActionTypes/CategoryActionTypes';
 
 const initialState = {
     categories: [],
+    categoryData: [],
+    Subcategories: [],
     loading: false,
     error: null
 }
@@ -10,6 +12,7 @@ const initialState = {
 const categoryReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.LOAD_CATEGORY_START:
+        case types.GET_SINGLE_CATEGORY_START:
             return {
                 ...state,
                 loading: true
@@ -19,8 +22,15 @@ const categoryReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 categories: action.payload
-            }   
+            }
+        case types.GET_SINGLE_CATEGORY_SUCCESS:
+            return{
+                ...state,
+                loading : false,
+                categoryData : action.payload
+            }  
         case types.LOAD_CATEGORY_ERROR:
+        case types.GET_SINGLE_CATEGORY_ERROR:
             return {
                 ...state,
                 loading: false,

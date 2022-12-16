@@ -1,4 +1,17 @@
 import React, { useState } from "react";
+import {
+  MDBBtn,
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBCard,
+  MDBCardBody,
+  MDBCardImage,
+  MDBInput,
+  MDBIcon,
+  MDBCheckbox
+}
+  from 'mdb-react-ui-kit';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createUserStart } from "../../../Redux/Actions/UserAction";
@@ -74,16 +87,150 @@ const Signup = () => {
       setAddressError('Address Required')
     }
     dispatch(createUserStart(data))
-    history.push('/')
+    // history.push('/')
   };
-
-  // if (user === 200) {
-  //     history.push('/')
-  // }
 
   return (
     <>
-      <div id="app">
+      <MDBContainer fluid>
+        <center>
+
+          <MDBCard className='text-black m-5' style={{ borderRadius: '10px', height: '10%', width: '50%', marginLeft: '100%' }}>
+            <MDBCardBody>
+              <MDBRow>
+                <MDBCol md='5' lg='6' className='order-2 order-lg-1 d-flex flex-column align-items-center'>
+                  <p classNAme="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+
+                  <div className="d-flex flex-row align-items-center mb-4 ">
+                    <MDBIcon fas icon="user me-3" size='lg' />
+                    <MDBInput
+                      label='Your Name'
+                      id='name'
+                      type='text'
+                      className='w-100'
+                      name="username"
+                      value={data.username}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <label style={{
+                    color: "red",
+                    marginLeft: '10%',
+                    display: "flex"
+                  }}>
+                    {usernameError}
+                  </label>
+                  <div className="d-flex flex-row align-items-center mb-4">
+                    <MDBIcon fas icon="envelope me-3" size='lg' />
+                    <MDBInput
+                      label='Your Email'
+                      id='email'
+                      type='email'
+                      name="email"
+                      value={data.email}
+                      onChange={handleChange} />
+                  </div>
+                  <label style={{
+                    color: "red",
+                    marginLeft: "10%",
+                    display: "flex"
+                  }}>
+                    {emailError}
+                  </label>
+
+                  <div className="d-flex flex-row align-items-center mb-4">
+                    <MDBIcon fas icon="lock me-3" size='lg' />
+                    <MDBInput
+                      label='Password'
+                      id='password'
+                      type='password'
+                      name="password"
+                      value={data.password}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <label style={{
+                    color: "red",
+                    marginLeft: '10%',
+                    display: "flex"
+                  }}>
+                    {passwordError}
+                  </label>
+
+                  <div className="d-flex flex-row align-items-center mb-4">
+                    <MDBIcon fas icon="key me-3" size='lg' />
+                    <MDBInput
+                      label='Repeat your password'
+                      id='confirm_password'
+                      type='password'
+                      name="confirm_password"
+                      value={data.confirm_password}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <label style={{
+                    color: "red",
+                    marginLeft: "10%",
+                    display: "flex"
+                  }}>
+                    {confirmPasswordError}
+                  </label>
+
+                  <div className="d-flex flex-row align-items-center mb-4">
+                    <MDBIcon fas icon="phone me-3" size='lg' />
+                    <MDBInput
+                      label='Mobile no'
+                      id='mobile'
+                      type=''
+                      name="mobile"
+                      value={data.mobile}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <label style={{
+                    color: "red",
+                    marginLeft: "10%",
+                    display: "flex"
+                  }}>
+                    {mobileError}
+                  </label>
+
+                  <div className="d-flex flex-row align-items-center mb-4">
+                    <MDBIcon fas icon="home me-3" size='lg' />
+                    <MDBInput
+                      label='Address'
+                      id='address'
+                      type=''
+                      name="address"
+                      value={data.address}
+                      onChange={handleChange} />
+                  </div>
+                  <label style={{
+                    color: "red",
+                    marginLeft: "10%",
+                    display: "flex"
+                  }}>
+                    {addressError}
+                  </label>
+
+                  <div className='mb-4'>
+                    {/* <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Subscribe to our newsletter' /> */}
+                  </div>
+
+                  <MDBBtn className='mb-4' size='lg' type="submit" onClick={handleSubmit}>Register</MDBBtn>
+
+                </MDBCol>
+
+                <MDBCol md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
+                  <MDBCardImage src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp' fluid />
+                </MDBCol>
+
+              </MDBRow>
+            </MDBCardBody>
+          </MDBCard>
+        </center>
+      </MDBContainer>
+      {/* <div id="app">
         <section className="section">
           <div className="container mt-5">
             <div className="row">
@@ -224,20 +371,6 @@ const Signup = () => {
                         </label>
                         <div className="invalid-feedback"></div>
                       </div>
-                      {/* <div className="form-group">
-                        <div className="custom-control custom-checkbox">
-                          <input
-                            type="checkbox"
-                            name="agree"
-                            className="custom-control-input"
-                            id="agree"
-                          />
-                          <label className="custom-control-label" for="agree">
-                            I agree with the terms and conditions
-                          </label>
-                        </div>
-                      </div> */}
-
                       <div className="form-group">
                         <button
                           type="submit"
@@ -254,7 +387,7 @@ const Signup = () => {
             </div>
           </div>
         </section>
-      </div>
+      </div> */}
     </>
   )
 }

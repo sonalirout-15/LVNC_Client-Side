@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { loadCategoryStart } from "../../Redux/Actions/CategoryAction";
 
 const Navbar = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(loadCategoryStart())
+    }, [])
+
+    const categories = useSelector((state) => state?.category?.categories?.categoryData?.rows)
+    const [data, setData] = useState(categories);
+
+    useEffect(() => {
+        setData(categories)
+    }, [categories])
+
     return (
         <>
             <header id="header">
@@ -20,15 +35,15 @@ const Navbar = () => {
                                         <Link to="/event" className="nav-link">Events</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link to="#" className="nav-link">Write for Us</Link>
+                                        <Link to="/" className="nav-link">Write for Us</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link to="#" className="nav-link">In the Press</Link>
+                                        <Link to="/" className="nav-link">In the Press</Link>
                                     </li>
                                 </ul>
                                 <ul className="navbar-top-right-menu">
                                     <li className="nav-item">
-                                        <Link href="#" className="nav-link"><i className="mdi mdi-magnify"></i></Link>
+                                        <Link href="/" className="nav-link"><i className="mdi mdi-magnify"></i></Link>
                                     </li>
                                     <li className="nav-item">
                                         <Link to="/login" className="nav-link">Login</Link>
@@ -42,7 +57,7 @@ const Navbar = () => {
                         <div className="navbar-bottom">
                             <div className="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <a className="navbar-brand" href="#"
+                                    <a className="navbar-brand" href="/"
                                     ><img src="assets/images/logo.png" alt=""
                                         /></a>
                                 </div>
@@ -61,9 +76,7 @@ const Navbar = () => {
                                         className="navbar-collapse justify-content-center collapse"
                                         id="navbarSupportedContent"
                                     >
-                                        <ul
-                                            className="navbar-nav d-lg-flex justify-content-between align-items-center"
-                                        >
+                                        <ul className="navbar-nav d-lg-flex justify-content-between align-items-center">
                                             <li>
                                                 <button className="navbar-close">
                                                     <i className="mdi mdi-close"></i>
@@ -72,24 +85,12 @@ const Navbar = () => {
                                             <li className="nav-item active">
                                                 <Link className="nav-link" to="/">Home</Link>
                                             </li>
-                                            <li className="nav-item">
-                                                <Link className="nav-link" to="/magazine">MAGAZINE</Link>
-                                            </li>
-                                            <li className="nav-item">
-                                                <Link className="nav-link" to="/business">BUSINESS</Link>
-                                            </li>
-                                            <li className="nav-item">
-                                                <Link className="nav-link" to="/sports">SPORTS</Link>
-                                            </li>
-                                            <li className="nav-item">
-                                                <Link className="nav-link" to="/art">ART</Link>
-                                            </li>
-                                            <li className="nav-item">
-                                                <Link className="nav-link" to="/politics">POLITICS</Link>
-                                            </li>
-                                            <li className="nav-item">
-                                                <Link className="nav-link" to="/travel">TRAVEL</Link>
-                                            </li>
+                                            {data && data.map((item) => (
+                                                <li className="nav-item">
+                                                    {item.status === 1 && 
+                                                     <Link className="nav-link" to={`/${(item.category_name).toLowerCase()}`}>{item.category_name}</Link>}
+                                                </li>
+                                            ))}
                                             <li className="nav-item">
                                                 <Link className="nav-link" to="/contact">CONTACT</Link>
                                             </li>
