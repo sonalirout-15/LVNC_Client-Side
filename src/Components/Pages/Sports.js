@@ -1,15 +1,18 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadCategoryStart } from "../../Redux/Actions/CategoryAction";
+import { useParams } from "react-router-dom";
+import { getSingleCategoryStart } from "../../Redux/Actions/CategoryAction";
 
 const Sports = () => {
   const dispatch = useDispatch();
+  const {id } = useParams();
+  console.log('ID>>>>>', id)
 
   useEffect(() => {
-    dispatch(loadCategoryStart())
+    dispatch(getSingleCategoryStart(id))
   }, [])
 
-  const sportsData = useSelector((state) => state?.category?.categories?.categoryData?.rows[13]?.Subcategories);
+  const sportsData = useSelector((state) => state?.categoryData?.categoriesData);
   console.log('sports-Data>>>>>>', sportsData)
 
   return (
@@ -30,7 +33,7 @@ const Sports = () => {
                     </div>
                     <div className="row">
                       <div className="col-lg-8">
-                        {sportsData && sportsData.map((item) => (
+                        {/* {sportsData && sportsData.map((item) => (
                           <div className="row">
                             <div className="col-sm-4 grid-margin">
                               <div className="rotate-img">
@@ -53,7 +56,7 @@ const Sports = () => {
                               </p>
                             </div>
                           </div>
-                        ))}
+                        ))} */}
 
                       </div>
                       <div className="col-lg-4">

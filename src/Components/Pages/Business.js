@@ -1,17 +1,19 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { loadCategoryStart } from "../../Redux/Actions/CategoryAction";
+import { getSingleCategoryStart } from "../../Redux/Actions/CategoryAction";
 
 const Business = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+  const {id } = useParams();
+  console.log('ID>>>>>', id)
 
-    useEffect(() => {
-        dispatch(loadCategoryStart())
-    },[])
+  useEffect(() => {
+    dispatch(getSingleCategoryStart(id))
+  }, [])
 
-    const businessData = useSelector((state) => state?.category?.categories?.categoryData?.rows[2].Subcategories);
-    console.log('Business-Data>>>>>>', businessData)
+  const businessData = useSelector((state) => state);
+  console.log('Business-Data>>>>>>', businessData)
     
     return (
         <>
@@ -32,7 +34,7 @@ const Business = () => {
                                         </div>
                                         <div className="row">
                                             <div className="col-lg-8">
-                                            {businessData && businessData.map((item) => (
+                                            {/* {businessData && businessData.map((item) => (
                                                 <div className="row">
                                                     <div className="col-sm-4 grid-margin">
                                                         <div className="rotate-img">
@@ -55,7 +57,7 @@ const Business = () => {
                                                         </p>
                                                     </div>
                                                 </div>
-                                                 ))}
+                                                 ))} */}
                                             </div>
                                             <div className="col-lg-4">
                                                 <h2 className="mb-4 text-primary font-weight-600">

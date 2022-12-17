@@ -15,14 +15,14 @@ export const loadCategoryError = (error) => ({
     payload: error
 })
 
-export const getSingleCategoryStart = (categoryData) => ({
+export const getSingleCategoryStart = (categoriesData) => ({
     type: types.GET_SINGLE_CATEGORY_START,
-    payload: categoryData
+    payload: categoriesData
 })
 
-export const getSingleCategorySuccess = (categoryData) => ({
+export const getSingleCategorySuccess = (categoriesData) => ({
     type: types.GET_SINGLE_CATEGORY_SUCCESS,
-    payload: categoryData
+    payload: categoriesData
 })
 
 export const getSingleCategoryError = (error) => ({

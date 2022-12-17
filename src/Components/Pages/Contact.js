@@ -49,7 +49,7 @@ const Contact = () => {
             setTitleError('Title Required!')
         }
         dispatch(contactUsStart(data))
-        //   history.push('/')
+          history.push('/')
     };
 
     return (

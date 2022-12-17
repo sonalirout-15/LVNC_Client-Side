@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleCategoryStart, loadCategoryStart } from '../../../src/Redux/Actions/CategoryAction';
+import { loadLatestNewsStart } from "../../Redux/Actions/LatestNewsAction";
 import { loadMattersStart } from "../../Redux/Actions/MattersAction";
 import { loadPostStart } from "../../Redux/Actions/PostActions";
 
@@ -19,17 +20,24 @@ const Home = () => {
     dispatch(loadPostStart())
   }, [])
 
-  const categories = useSelector((state) => state?.category?.categories?.categoryData?.rows);
+  useEffect(() => {
+    dispatch(loadLatestNewsStart())
+  }, [])
+
+  const categories = useSelector((state) =>  state?.categoryData?.categories?.categoryData?.rows);
   const [data, setData] = useState(categories);
 
-  const singleData = useSelector((state) => state?.category?.categoryData[0]?.Subcategories)
+  const singleData = useSelector((state) => state?.categoryData?.categoriesData[0]?.Subcategories)
+  console.log('Single-Category-Data>>>>>>', singleData)
 
   const mattersData = useSelector((state) => state?.matters?.matters?.mettersData?.rows)
   const [matterData, setMattersData] = useState(mattersData)
 
-   const postData = useSelector((state) => state?.post?.post?.rows)
-    const [postdata, setPostData] = useState(postData)
+  const postData = useSelector((state) => state?.post?.post?.rows)
+  const [postdata, setPostData] = useState(postData)
 
+  const latestNewsData = useSelector((state) => state?.latestNews?.latestnewsData?.latestnewsData?.rows)
+  const [latestnewsdata, setLatestNewsData] = useState(latestNewsData)
 
 
   useEffect(() => {
@@ -47,6 +55,10 @@ const Home = () => {
     useEffect(() => {
         setPostData(postData)
     }, [postData])
+
+    useEffect(() => {
+      setLatestNewsData(latestNewsData)
+  }, [latestNewsData])
 
   return (
 
@@ -82,59 +94,25 @@ const Home = () => {
                 <div className="card text-white" style={{ backgroundColor: 'black' }}>
                   <div className="card-body">
                     <h2>Latest news</h2>
-
+                    {latestnewsdata && latestnewsdata.map((item) => (
                     <div
                       className="d-flex border-bottom-blue pt-3 pb-4 align-items-center justify-content-between"
                     >
                       <div className="pr-3">
-                        <h6>Virus Kills Member Of Advising Iran’s Supreme</h6>
+                        <h6>{item.title}</h6>
                         <div className="fs-10">
                           <span className="mr-2">Photo </span>10 Minutes ago
                         </div>
                       </div>
                       <div className="rotate-img">
                         <img
-                          src="assets/images/dashboard/home_1.jpg"
+                          src={item.image}
                           alt="thumb"
                           className="img-fluid img-lg"
                         />
                       </div>
                     </div>
-
-                    <div
-                      className="d-flex border-bottom-blue pb-4 pt-4 align-items-center justify-content-between"
-                    >
-                      <div className="pr-3">
-                        <h6>Virus Kills Member Of Advising Iran’s Supreme</h6>
-                        <div className="fs-12">
-                          <span className="mr-2">Photo </span>10 Minutes ago
-                        </div>
-                      </div>
-                      <div className="rotate-img">
-                        <img
-                          src="assets/images/dashboard/home_2.jpg"
-                          alt="thumb"
-                          className="img-fluid img-lg"
-                        />
-                      </div>
-                    </div>
-                    <div
-                      className="d-flex pt-4 align-items-center justify-content-between"
-                    >
-                      <div className="pr-3">
-                        <h6>Virus Kills Member Of Advising Iran’s Supreme</h6>
-                        <div className="fs-10">
-                          <span className="mr-2">Photo </span>10 Minutes ago
-                        </div>
-                      </div>
-                      <div className="rotate-img">
-                        <img
-                          src="assets/images/dashboard/home_3.jpg"
-                          alt="thumb"
-                          className="img-fluid img-lg"
-                        />
-                      </div>
-                    </div>
+                     ))}
                   </div>
                 </div>
               </div>
@@ -146,7 +124,7 @@ const Home = () => {
                     <h3>Category</h3>
                     {data && data.map((item) => (
                     <ul className="vertical-menu">
-                        {item.status === 0 ? (
+                        {item.header === 0 ? (
                           <li onClick={() => handleClickCategory(item.id)}><a>{item.category_name}</a></li>
                         ): (null)} 
                     </ul>
@@ -196,7 +174,7 @@ const Home = () => {
                         <div className="card-title">
                           Video
                         </div>
-                        {matterData && matterData.map((item) => (
+                        {latestnewsdata && latestnewsdata.map((item) => (
                         <div className="row">
                           <div className="col-sm-6 grid-margin">
                             <div className="position-relative">
@@ -232,7 +210,7 @@ const Home = () => {
                             </div>
                           </div>
                           <h4 className="font-weight-600 mb-0">
-                            Apple Introduces Apple Watch
+                            {item.title}
                           </h4>
                         </div>
                         ))}

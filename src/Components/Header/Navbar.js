@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { loadCategoryStart } from "../../Redux/Actions/CategoryAction";
 
 const Navbar = () => {
     const dispatch = useDispatch();
+    const history = useHistory()
 
     useEffect(() => {
         dispatch(loadCategoryStart())
     }, [])
 
-    const categories = useSelector((state) => state?.category?.categories?.categoryData?.rows)
+    const categories = useSelector((state) => state?.categoryData?.categories?.categoryData?.rows)
+    console.log('category>>>>>>>', categories)
     const [data, setData] = useState(categories);
 
     useEffect(() => {
@@ -87,8 +89,10 @@ const Navbar = () => {
                                             </li>
                                             {data && data.map((item) => (
                                                 <li className="nav-item">
-                                                    {item.status === 1 && 
-                                                     <Link className="nav-link" to={`/${(item.category_name).toLowerCase()}`}>{item.category_name}</Link>}
+                                                    {item.header === 1 && 
+                                                     <Link 
+                                                        className="nav-link" 
+                                                        to={`/${(item.category_name).toLowerCase()}/${(item.id)}`}>{item.category_name}</Link>}
                                                 </li>
                                             ))}
                                             <li className="nav-item">

@@ -13,7 +13,6 @@ import { getSingleCategoryError, getSingleCategorySuccess, loadCategoryError, lo
 export function* onLoadCategoryStartAsync() {
     try {
         const response = yield call(loadCategoryApi);
-
         if (response.data.message === "Success") {
             yield put(loadCategorySuccess(response.data))
         }
@@ -26,6 +25,7 @@ export function* onGetSingleCategoryStartAsync({ payload }) {
     try {
         const response = yield call(getSingleCategoryApi, payload);
         if (response.data.status === 200) {
+            console.log('Response>>>>>', response.data.categoryData)
             yield put(getSingleCategorySuccess(response.data?.categoryData))
         }
     } catch (error) {
