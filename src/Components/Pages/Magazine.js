@@ -4,6 +4,9 @@ import { loadCategoryStart } from "../../Redux/Actions/CategoryAction";
 
 const Magazine = () => {
     const dispatch = useDispatch()
+//    const siteUrl = window.location.search;
+// const urlParams = new URLSearchParams(siteUrl);
+// console.log( urlParams['id'] ) 
 
     useEffect(() => {
         dispatch(loadCategoryStart())

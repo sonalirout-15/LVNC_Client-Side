@@ -7,13 +7,10 @@ import {
     MDBCard,
     MDBCardBody,
     MDBInput,
-    MDBIcon,
-    MDBCheckbox
-}
-    from 'mdb-react-ui-kit';
-import { useDispatch, useSelector } from "react-redux";
+} from 'mdb-react-ui-kit';
+import { useDispatch} from "react-redux";
 import { useHistory } from "react-router-dom";
-import { userForgotPasswordStart, userLoginStart } from '../../../Redux/Actions/UserAction';
+import { userForgotPasswordStart } from '../../../Redux/Actions/UserAction';
 
 const ForgotPassword = () => {
     const [emailError, setEmailError] = useState(null);
@@ -54,7 +51,6 @@ const ForgotPassword = () => {
     return (
         <>
             <MDBContainer fluid>
-
                 <MDBRow className='d-flex justify-content-center align-items-center h-100'>
                     <MDBCol col='12'>
 

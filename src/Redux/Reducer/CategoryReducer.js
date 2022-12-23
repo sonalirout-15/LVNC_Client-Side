@@ -2,7 +2,7 @@ import * as types from '../ActionTypes/CategoryActionTypes';
 
 const initialState = {
     categories: [],
-    categoriesData: [],
+    categoryData: [],
     Subcategories: [],
     loading: false,
     error: null
@@ -27,8 +27,8 @@ const categoryReducer = (state = initialState, action) => {
             return{
                 ...state,
                 loading : false,
-                categoriesData : action.payload
-            }  
+                categoryData : action.payload
+            }   
         case types.LOAD_CATEGORY_ERROR:
         case types.GET_SINGLE_CATEGORY_ERROR:
             return {

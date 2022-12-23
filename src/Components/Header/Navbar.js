@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { loadCategoryStart } from "../../Redux/Actions/CategoryAction";
 
 const Navbar = () => {
@@ -12,7 +12,6 @@ const Navbar = () => {
     }, [])
 
     const categories = useSelector((state) => state?.categoryData?.categories?.categoryData?.rows)
-    console.log('category>>>>>>>', categories)
     const [data, setData] = useState(categories);
 
     useEffect(() => {
@@ -45,7 +44,7 @@ const Navbar = () => {
                                 </ul>
                                 <ul className="navbar-top-right-menu">
                                     <li className="nav-item">
-                                        <Link href="/" className="nav-link"><i className="mdi mdi-magnify"></i></Link>
+                                        <Link to='/search' className="nav-link"><i className="mdi mdi-magnify"></i></Link>
                                     </li>
                                     <li className="nav-item">
                                         <Link to="/login" className="nav-link">Login</Link>
@@ -60,8 +59,7 @@ const Navbar = () => {
                             <div className="d-flex justify-content-between align-items-center">
                                 <div>
                                     <a className="navbar-brand" href="/"
-                                    ><img src="assets/images/logo.png" alt=""
-                                        /></a>
+                                    ><img src="assets/images/logo.png" alt=""/></a>
                                 </div>
                                 <div>
                                     <button
@@ -88,11 +86,13 @@ const Navbar = () => {
                                                 <Link className="nav-link" to="/">Home</Link>
                                             </li>
                                             {data && data.map((item) => (
+                                                // console.log('ITEM======?', item?.Subcategories[0]?.category_ref_id)
                                                 <li className="nav-item">
                                                     {item.header === 1 && 
                                                      <Link 
-                                                        className="nav-link" 
-                                                        to={`/${(item.category_name).toLowerCase()}/${(item.id)}`}>{item.category_name}</Link>}
+                                                        className="nav-link"
+                                                        to={`/${(item.category_name).toLowerCase()}/${item.id}`}>{item.category_name}
+                                                    </Link>}
                                                 </li>
                                             ))}
                                             <li className="nav-item">

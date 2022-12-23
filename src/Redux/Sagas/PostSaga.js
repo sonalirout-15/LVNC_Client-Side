@@ -15,7 +15,6 @@ export function* onLoadPostStartAsync() {
     try {
         const response = yield call(loadPostApi);
         if (response.status === 200) {
-            console.log('Response>>>>>>>', response.data.mettersData)
             yield put(loadPostSuccess(response.data.mettersData))
         }
     } catch (error) {

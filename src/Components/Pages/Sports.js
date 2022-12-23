@@ -2,23 +2,52 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getSingleCategoryStart } from "../../Redux/Actions/CategoryAction";
+import { getSingleSubcategoryStart } from "../../Redux/Actions/SubcategoryAction";
 
 const Sports = () => {
   const dispatch = useDispatch();
-  const {id } = useParams();
-  console.log('ID>>>>>', id)
+  const current = new Date();
+    const date = `${current.getDate()},${current.toLocaleString('default', { month: 'long' })} ${current.getMonth() + 1}, ${current.getFullYear()}`;
+  const {id} = useParams()
+
+  const sportsData = useSelector((state) => state?.subcategory?.cateData?.categoryData);
+  console.log('SPORTS-DATA~~~~~~~~~~~~~', sportsData)
+
+  const headerData = useSelector((state) => state?.categoryData?.categoryData[0]?.Subcategories);
 
   useEffect(() => {
     dispatch(getSingleCategoryStart(id))
   }, [])
-
-  const sportsData = useSelector((state) => state?.categoryData?.categoriesData);
-  console.log('sports-Data>>>>>>', sportsData)
+  
+  const handleClickCategory = (item) => {
+        dispatch(getSingleSubcategoryStart(item))
+    }
 
   return (
-    <>
+  
       <div className="container-scroller">
         <div className="main-panel">
+        <div className="container-scroller">
+                <div className="main-panel">
+                    <div className="flash-news-banner">
+                        <div className="container">
+                            <div className="d-lg-flex align-items-center justify-content-between">
+                                <div className="d-flex align-items-center">
+                                <span className="badge badge-dark mr-2">Subcategories</span>
+                                    {headerData && headerData.map((item) => (
+                                    <span onClick={() => handleClickCategory(item.id)} className="badge badge mr-2" style={{color : 'black', height:'10%'}}>{item.subcategory_name}</span>
+                                    ))}
+
+                                </div>
+                                <div className="d-flex">
+                                    <span className="mr-4 text-danger">{date}</span>
+                                    <span className="text-danger">30°C, India</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
           <div className="content-wrapper">
             <div className="container">
               <div className="col-sm-12">
@@ -33,7 +62,7 @@ const Sports = () => {
                     </div>
                     <div className="row">
                       <div className="col-lg-8">
-                        {/* {sportsData && sportsData.map((item) => (
+                        {sportsData && sportsData.map((item) => (
                           <div className="row">
                             <div className="col-sm-4 grid-margin">
                               <div className="rotate-img">
@@ -56,7 +85,7 @@ const Sports = () => {
                               </p>
                             </div>
                           </div>
-                        ))} */}
+                        ))}
 
                       </div>
                       <div className="col-lg-4">
@@ -197,7 +226,7 @@ const Sports = () => {
           </div>
         </div>
       </div>
-    </>
+    
   )
 }
 

@@ -4,6 +4,8 @@ const Header = () => {
     const current = new Date();
     const date = `${current.getDate()},${current.toLocaleString('default', { month: 'long' })} ${current.getMonth() + 1}, ${current.getFullYear()}`;
 
+
+
     return (
         <>
             <div className="container-scroller">
@@ -12,11 +14,7 @@ const Header = () => {
                         <div className="container">
                             <div className="d-lg-flex align-items-center justify-content-between">
                                 <div className="d-flex align-items-center">
-                                    <span className="badge badge-dark mr-3">Flash news</span>
-                                    <p className="mb-0">
-                                        Lorem Ipsum has been the industry's standard dummy text ever
-                                        since the 1500s.
-                                    </p>
+                                    <span className="badge badge-dark mr-2">Flash News</span>
                                 </div>
                                 <div className="d-flex">
                                     <span className="mr-4 text-danger">{date}</span>

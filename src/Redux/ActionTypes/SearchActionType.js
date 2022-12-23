@@ -1,0 +1,1 @@
+export const CATEGORY_SEARCH = 'CATEGORY_SEARCH'

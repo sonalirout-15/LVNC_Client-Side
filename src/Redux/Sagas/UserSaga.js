@@ -7,7 +7,13 @@ import * as types from '../ActionTypes/UserActionType';
         takeLatest,
 } from 'redux-saga/effects';
 import Swal from 'sweetalert2';
-import { createUserApi, userChangePasswordApi, userForgotPasswordApi, userLoginApi, userResetPasswordApi } from '../APIS/UserApi';
+import { 
+    createUserApi, 
+    userChangePasswordApi, 
+    userForgotPasswordApi, 
+    userLoginApi, 
+    userResetPasswordApi 
+} from '../APIS/UserApi';
 import { 
     createUserError, 
     createUserSuccess, 
@@ -146,7 +152,6 @@ export function* onUserLogoutStartAsync() {
 export function* onCreateUserStartAsync({ payload }) {
     try {
         const response = yield call(createUserApi, payload)
-        console.log('PAYLOAD~~~~~~', response.data)
         if (response.data.message === "Success") {
             yield put(createUserSuccess(response.data))
             Toast.fire({

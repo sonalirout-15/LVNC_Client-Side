@@ -15,7 +15,7 @@ const Footer = () => {
         dispatch(loadCategoryStart())
     }, [])
 
-    const categories = useSelector((state) => state?.category?.categories?.categoryData?.rows);
+    const categories = useSelector((state) => state?.categoryData?.categories?.categoryData?.rows);
     const [data, setData] = useState(categories);
 
     useEffect(() => {
@@ -92,7 +92,7 @@ const Footer = () => {
                                     <div className="d-flex justify-content-between align-items-center">
                                         
                                         <h6 className="mb-0 font-weight-600">{item.category_name}</h6>
-                                        <div className="count">1</div>
+                                        <div className="count">{item.header}</div>
                                     </div>
                                 </div>
                                 ))}

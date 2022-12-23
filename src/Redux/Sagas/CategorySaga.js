@@ -8,7 +8,7 @@ import {
     takeEvery
 } from "redux-saga/effects";
 import { getSingleCategoryApi, loadCategoryApi } from '../APIS/CategoryApi';
-import { getSingleCategoryError, getSingleCategorySuccess, loadCategoryError, loadCategorySuccess } from '../Actions/CategoryAction';
+import {  getSingleCategoryError, getSingleCategorySuccess, loadCategoryError, loadCategorySuccess } from '../Actions/CategoryAction';
 
 export function* onLoadCategoryStartAsync() {
     try {
@@ -24,14 +24,15 @@ export function* onLoadCategoryStartAsync() {
 export function* onGetSingleCategoryStartAsync({ payload }) {
     try {
         const response = yield call(getSingleCategoryApi, payload);
-        if (response.data.status === 200) {
-            console.log('Response>>>>>', response.data.categoryData)
-            yield put(getSingleCategorySuccess(response.data?.categoryData))
+        // console.log('Response~~~~~~~~~~~~', response.data)
+        if (response.data.message === "Success") {
+            yield put(getSingleCategorySuccess(response.data.categoryData))
         }
     } catch (error) {
         yield put(getSingleCategoryError(error.response))
     }
 }
+
 
 export function* onLoadCategory() {
     yield takeLatest(types.LOAD_CATEGORY_START, onLoadCategoryStartAsync)
@@ -41,9 +42,10 @@ export function* onGetSingleCategory() {
     yield takeEvery(types.GET_SINGLE_CATEGORY_START, onGetSingleCategoryStartAsync)
 }
 
+
 const categoriesSagas = [
     fork(onLoadCategory),
-    fork(onGetSingleCategory)
+    fork(onGetSingleCategory),
 
 ]
 
