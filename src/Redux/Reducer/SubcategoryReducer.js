@@ -19,17 +19,17 @@ const subcategoryReducer = (state = initialState, action) => {
                 ...state,
                 loading: true
             }
+        case types.LOAD_SUBCATEGORY_SUCCESS:
+                return{
+                    ...state,
+                    loading : false,
+                    subcategories: action.payload
+                }
         case types.GET_SINGLE_SUBCATEGORY_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 cateData: action.payload
-            }
-        case types.LOAD_SUBCATEGORY_SUCCESS:
-            return{
-                ...state,
-                loading : false,
-                subcategories: action.payload
             }
         case types.GET_SINGLE_SUBCATEGORY_ERROR:
         case types.LOAD_SUBCATEGORY_ERROR:

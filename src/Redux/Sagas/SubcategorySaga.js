@@ -12,11 +12,13 @@ import { getSingleSubcategoryApi, loadSubcategoryApi } from '../APIS/Subcatgeory
 export function* onLoadSubcategoryStartAsync() {
     try {
         const response = yield call(loadSubcategoryApi);
-        if (response.data.message === "Success") {
-            yield put(loadSubcategorySuccess(response.data))
+        if (response.data.message === 'Success') {
+            // console.log('RESPONSE~~~~~~~~~~~~~~~~~~~~~~>', response.data.categoryData)
+            yield put(loadSubcategorySuccess(response.data.categoryData))
         }
     } catch (error) {
         yield put(loadSubcategoryError(error.response))
+        
     }
 }
 
@@ -32,6 +34,9 @@ export function* onGetSingleSubcategoryStartAsync({ payload }) {
     }
 }
 
+export function* onLoadSubcategory() {
+    yield takeLatest(types.LOAD_SUBCATEGORY_START, onLoadSubcategoryStartAsync)
+}
 
 export function* onGetSingleSubcategory() {
     yield takeLatest(types.GET_SINGLE_SUBCATEGORY_START, onGetSingleSubcategoryStartAsync)
@@ -39,6 +44,7 @@ export function* onGetSingleSubcategory() {
 
 
 const subcategoriesSagas = [
+    fork(onLoadSubcategory),
     fork(onGetSingleSubcategory),
 ]
 

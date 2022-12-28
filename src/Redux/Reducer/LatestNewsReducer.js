@@ -1,7 +1,8 @@
 import * as types from '../ActionTypes/LatestNewsActionType';
 
 const initialState = {
-    latestnewsData: [],
+    latestNewsData: [],
+    singlelatestNewsData: [],
     loading: false,
     error: null
 }
@@ -10,6 +11,7 @@ const initialState = {
 const latestNewsReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.LOAD_LATEST_NEWS_START:
+        case types.GET_SINGLE_LATEST_NEWS_START:
             return {
                 ...state,
                 loading: true,
@@ -18,9 +20,16 @@ const latestNewsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                latestnewsData: action.payload,
+                latestNewsData: action.payload,
+            }
+        case types.GET_SINGLE_LATEST_NEWS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                singlelatestNewsData: action.payload
             }
         case types.LOAD_LATEST_NEWS_ERROR:
+        case types.GET_SINGLE_LATEST_NEWS_ERROR:
             return {
                 ...state,
                 loading: false,

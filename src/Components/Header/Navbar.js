@@ -26,6 +26,9 @@ const Navbar = () => {
                         <div className="navbar-top">
                             <div className="d-flex justify-content-between align-items-center">
                                 <ul className="navbar-top-left-menu">
+                                <li className="nav-item">
+                                        <Link to="/event" className="nav-link">Videos</Link>
+                                    </li>
                                     <li className="nav-item">
                                         <Link to="/advertise" className="nav-link">Advertise</Link>
                                     </li>
@@ -35,12 +38,12 @@ const Navbar = () => {
                                     <li className="nav-item">
                                         <Link to="/event" className="nav-link">Events</Link>
                                     </li>
-                                    <li className="nav-item">
+                                    {/* <li className="nav-item">
                                         <Link to="/" className="nav-link">Write for Us</Link>
                                     </li>
                                     <li className="nav-item">
                                         <Link to="/" className="nav-link">In the Press</Link>
-                                    </li>
+                                    </li> */}
                                 </ul>
                                 <ul className="navbar-top-right-menu">
                                     <li className="nav-item">

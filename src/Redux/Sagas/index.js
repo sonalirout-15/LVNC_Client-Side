@@ -1,4 +1,5 @@
 import {all} from 'redux-saga/effects'
+import bannerImageSaga from './BannerImageSaga'
 import campaingSaga from './CampaignSaga'
 import categorySaga from './CategorySaga'
 import contactUsSaga from './ContactSaga'
@@ -17,8 +18,10 @@ export default function* rootSaga(){
         postSaga(),
         campaingSaga(),
         mattersSaga(),
-        contactUsSaga(),
         latestNewsSaga(),
-        categorySearchSaga()
+        contactUsSaga(),
+        bannerImageSaga(),
+        categorySearchSaga(),
+
     ])
 }

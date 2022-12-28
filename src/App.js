@@ -14,6 +14,7 @@ import Business from './Components/Pages/Business';
 import Sports from './Components/Pages/Sports';
 import Politics from './Components/Pages/Politics';
 import Lifestyle from './Components/Pages/Lifestyle';
+import LatestNews from './Components/Pages/LatestNews';
 import Contact from './Components/Pages/Contact';
 import Navbar from './Components/Header/Navbar';
 import Footer from './Components/Footer/Footer';
@@ -45,6 +46,7 @@ function App() {
       <Route path='/sports/:id' component={Sports} />
       <Route path='/politics/:id' component={Politics} />
       <Route path='/lifestyle/:id' component={Lifestyle} />
+      <Route path='/latestNews/:id' component={LatestNews}/>
       <Route path='/contact' component={Contact} />
       <Route path='/search' component={Search}/>
       {

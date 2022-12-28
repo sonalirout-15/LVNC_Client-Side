@@ -41,14 +41,14 @@ const Search = () => {
                                     <div
                                         className="navbar-collapse justify-content-center collapse"
                                         id="navbarSupportedContent">
-                                        <ul className="navbar-nav d-lg-flex justify-content-between align-items-center">
+                                        <ul className="navbar-nav d-lg-flex">
                                             <li>
                                                 <button className="navbar-close">
                                                     <i className="mdi mdi-close"></i>
                                                 </button>
                                             </li>
                                            {data && data?.map((item) => (
-                                                 <ul className="navbar-top-left-menu" style={{ color : '#032a63', fontSize:'18px', justifyContent:'right'}}>{item?.category_name}
+                                                 <ul className="navbar-top-left-menu" style={{ color : '#032a63', fontSize:'18px'}}>{item?.category_name}
                                                  <div className="nav-item">
                                                     { item?.Subcategories?.map((items) => (
                                                        

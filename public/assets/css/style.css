@@ -494,8 +494,9 @@ mark,
 }
 
 .img-fluid {
-  max-width: 100%;
+  max-width: 80%;
   height: auto;
+
 }
 
 .img-thumbnail {
@@ -10236,7 +10237,7 @@ header .navbar-top .navbar-top-right-menu {
 header .navbar-top .navbar-top-left-menu .nav-item,
 header .navbar-top .navbar-top-right-menu .nav-item {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
 }
 
 header .navbar-top .navbar-top-left-menu .nav-item .nav-link,
@@ -10596,7 +10597,7 @@ header .navbar-bottom .navbar-toggler {
 }
 
 .content-wrapper .vertical-menu li a {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -10604,7 +10605,7 @@ header .navbar-bottom .navbar-toggler {
   letter-spacing: normal;
   color: #ababac;
   padding: 10.5px 0;
-  display: block;
+  display: flex;
 }
 
 .content-wrapper .vertical-menu li a:hover, .content-wrapper .vertical-menu li a:focus, .content-wrapper .vertical-menu li a.active {

@@ -1,4 +1,5 @@
 import {combineReducers} from 'redux';
+import bannerImageReducer from './Reducer/BannerImageReducer';
 import campaignReducer from './Reducer/CampaignReducer';
 import categoryReducer from './Reducer/CategoryReducer';
 import contactUsReducer from './Reducer/ContactReducer';
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     campaign : campaignReducer,
     matters : mattersReducer,
     contactUs : contactUsReducer,
-    latestNews : latestNewsReducer
+    latestnews : latestNewsReducer,
+    bannerImage : bannerImageReducer
 })
 
 export default rootReducer;
