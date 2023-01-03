@@ -79,7 +79,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.5;
   color: #3a3a3a;
   text-align: left;
@@ -651,6 +651,7 @@ pre code {
 .no-gutters > [class*="col-"] {
   padding-right: 0;
   padding-left: 0;
+  width: 10%;
 }
 
 .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col,
@@ -660,7 +661,7 @@ pre code {
 .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl,
 .col-xl-auto {
   position: relative;
-  width: 100%;
+  width: 90%;
   padding-right: 18px;
   padding-left: 18px;
 }
@@ -9529,11 +9530,11 @@ a.text-warning:hover, a.text-warning:focus {
 }
 
 .text-danger {
-  color: #d1011c !important;
+  color: #dc3545 !important;
 }
 
 a.text-danger:hover, a.text-danger:focus {
-  color: #850112 !important;
+  color: #dc3545 !important;
 }
 
 .text-light {
@@ -9688,7 +9689,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .card .card-body {
-  padding: 2rem 2rem;
+  padding: 2rem 3rem;
 }
 
 .card.card-hover {
@@ -10552,12 +10553,12 @@ header .navbar-bottom .navbar-toggler {
 
 .flash-news-banner {
   background: #ffffff;
-  padding: 20px 0px;
+  padding: 10px 12px;
 }
 
 .flash-news-banner span {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 600; 
   font-stretch: normal;
   font-style: normal;
   line-height: 1.56;
@@ -11026,7 +11027,7 @@ footer .footer-bottom {
 .card .card-body,
 .card .card-footer {
   background-color: transparent;
-  padding: 20px 25px;
+  padding: 15px 20px;
 }
 .form-group {
   margin-bottom: 25px;
@@ -11121,7 +11122,7 @@ a {
   padding: 15px 25px;
   display: flex;
   align-items: center;
-}
+} 
 
 .card .card-header .btn {
   margin-top: 1px;
@@ -11457,4 +11458,28 @@ a {
 
 .custom-file-input:focus+.custom-file-label:after {
   border-color: transparent;
+}
+
+.subcate {
+  background: #ffffff;
+  padding: 15px 60px;
+  width: 91%;
+  margin-left: 3%;
+  text-decoration: white;
+  background-color: #032a63;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.subcategory-head {
+  margin-right: 1000px;
+  font-weight: bold;
+  color: black;
 }

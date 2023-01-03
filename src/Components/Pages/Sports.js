@@ -28,7 +28,7 @@ const Sports = () => {
       <div className="container-scroller">
         <div className="main-panel">
         <div className="container-scroller">
-                <div className="main-panel">
+                {/* <div className="main-panel">
                     <div className="flash-news-banner">
                         <div className="container">
                             <div className="d-lg-flex align-items-center justify-content-between">
@@ -46,7 +46,7 @@ const Sports = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
           <div className="content-wrapper">
             <div className="container">

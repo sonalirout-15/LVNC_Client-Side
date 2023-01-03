@@ -27,27 +27,6 @@ const Business = () => {
  
 <div className="container-scroller">
         <div className="main-panel">
-        <div className="container-scroller">
-                <div className="main-panel">
-                    <div className="flash-news-banner">
-                        <div className="container">
-                            <div className="d-lg-flex align-items-center justify-content-between">
-                                <div className="d-flex align-items-center">
-                                <span className="badge badge-dark mr-2">Subcategories</span>
-                                    {headerData && headerData.map((item) => (
-                                    <span onClick={() => handleClickCategory(item.id)} className="badge badge mr-2" style={{color : 'black', height:'10%'}}>{item.subcategory_name}</span>
-                                    ))}
-
-                                </div>
-                                <div className="d-flex">
-                                    <span className="mr-4 text-danger">{date}</span>
-                                    <span className="text-danger">30°C, India</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
           <div className="content-wrapper">
             <div className="container">
               <div className="col-sm-12">

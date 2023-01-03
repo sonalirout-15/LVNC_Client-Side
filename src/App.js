@@ -4,6 +4,7 @@ import Login from './Components/Pages/Auth/Login';
 import Signup from './Components/Pages/Auth/Signup';
 import ForgotPassword from './Components/Pages/Auth/ForgotPassword';
 import Home from './Components/Pages/Home';
+import Videos from './Components/Pages/Videos';
 import Advertise from './Components/Header/Advertise';
 import AboutUs from './Components/Header/AboutUs';
 import Event from './Components/Header/Event';
@@ -29,17 +30,18 @@ function App() {
       {
         location.pathname !== '/login' &&  location.pathname !=='/signup' && location.pathname !=='/forgot-password'  && <Navbar />
       }
-      {/* {
+      {
         location.pathname !== '/login' && location.pathname !=='/signup' && location.pathname !=='/forgot-password' && <Header />
-      } */}
+      }
       <Route path='/' exact component={Home} />
       <Route path='/login' component={Login} />
       <Route path='/forgot-password' component={ForgotPassword} />
       <Route path='/signup' component={Signup}/>
+      <Route path='./videos' component={Videos}/>
       <Route path='/advertise' component={Advertise} />
       <Route path='/about' component={AboutUs} />
       <Route path='/event' component={Event} />
-      <Route path='/subcategory' component={Subcategory}/>
+      <Route path='/:category_name/:id' component={Subcategory}/>
       <Route path='/world news/:id' component={WorldNews}/>
       <Route path='/magazine/:id' component={Magazine} />
       <Route path='/business/:id' component={Business} />
