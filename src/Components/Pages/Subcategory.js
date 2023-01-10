@@ -1,31 +1,49 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { getSingleCategoryStart } from "../../Redux/Actions/CategoryAction";
+import { getSingleSubcategoryStart } from "../../Redux/Actions/SubcategoryAction";
 
 
 const Subcategory = () => {
     const dispatch = useDispatch();
-    const {id} = useParams();
+    const history = useHistory();
+    const {category_name} = useParams();
 
+    const singleCategoryName = useSelector((state) => state?.categoryData?.categoryData);
     const singleSubcategoryName = useSelector((state) => state?.categoryData?.categoryData[0]?.Subcategories);
-    // console.log('SINGLE-SUBCATEGORYNAME~~~~~~~~~~~~~>>>>>>', singleSubcategoryName)
+    const singleCategoryData = useSelector((state) => state?.subcategory?.cateData[0]?.Childcategories);
 
     useEffect(() => {
-        dispatch(getSingleCategoryStart(id))
+        dispatch(getSingleCategoryStart(category_name))
     },[])
+
+    const handleClickSubcategory = (item) => {
+      item?.map((subcate_id) => {
+        dispatch(getSingleSubcategoryStart(subcate_id?.Subcategory_ref_id))
+     })
+    }
+
+    const handleData = (items) => {
+      console.log('ITEMS~~~~~~~~~~~~>>>', items.id);
+      history.push(`/${items.id}`);
+    }
 
     return (
         <div>
+          {singleCategoryName && singleCategoryName.map((name) => (
+            <h3 className="cat_name">{name.category_name} News</h3>
+          ))}   
        <div className="container-scroller">
-                <div className="main-panel">
+              <div className="main-panel">
                     <div className="subcate">
                         <div className="container">
                             <div className="d-lg-flex align-items-center justify-content-between">
                                 <div className="d-flex align-items-center">
                                     {singleSubcategoryName && singleSubcategoryName.map((item) => (
+                                      // console.log('ITEM~~~~~~>>>', item)
                                    <div className="nav-item"> 
-                                    <a style={{color: 'white', margin:'10px'}}>{item.subcategory_name}</a>
+                                    <a style={{color: 'white', margin:'10px'}} onClick={() => handleClickSubcategory(item?.Childcategories)}>{item.subcategory_name}</a>
                                    </div>
                                     ))}
                                 </div>
@@ -33,53 +51,208 @@ const Subcategory = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="row row-cols-4 g-3" style={{ marginTop : '10px'}}>
-                <div className="col">
-                  <div className="card">
-                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp" className="card-img-top" alt="Hollywood Sign on The Hill" />
-                    <div className="card-body">
-                      <h5 className="card-title">Card title</h5>
-                      <p className="card-text">
-                        This is a longer card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.
-                      </p>
+          </div>
+          <div className="content-wrapper">
+          <div className="container">
+            <div className="col-sm-12">
+              <div className="card" data-aos="fade-up">
+                <div className="card-body">
+                  <div className="row">
+                    <div className="col-sm-12">
                     </div>
                   </div>
-                </div>
-                <div className="col">
-                  <div className="card">
-                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp" className="card-img-top" alt="Palm Springs Road" />
-                    <div className="card-body">
-                      <h5 className="card-title">Card title</h5>
-                      <p className="card-text">
-                        This is a longer card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.
-                      </p>
+                  <div className="row">
+                    <div className="col-lg-8">
+                      {singleCategoryData && singleCategoryData.map((items) => {
+                            return (
+                        <div className="row" onClick={() => handleData(items)}>
+                        <div className="col-sm-4 grid-margin">
+                          <div className="rotate-img">
+                            <img
+                              src={items?.image}
+                              alt="banner"
+                              class="img-fluid"
+                              />
+                          </div>
+                        </div>
+                        <div className="col-sm-8 grid-margin">
+                          <h6 className="font-weight-600 mb-2">
+                           {items?.title}
+                          </h6>
+                          <p className="fs-13 text-muted mb-0">
+                            <span className="mr-2">Photo </span>{items?.updated_at}
+                          </p>
+                        </div>
+                      </div>
+                        )
+                      })}
                     </div>
-                  </div>
-                </div>
-                <div className="col">
-                  <div className="card">
-                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp" className="card-img-top" alt="Los Angeles Skyscrapers" />
-                    <div className="card-body">
-                      <h5 className="card-title">Card title</h5>
-                      <p className="card-text">This is a longer card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col">
-                  <div className="card">
-                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp" className="card-img-top" alt="Los Angeles Skyscrapers" />
-                    <div className="card-body">
-                      <h5 className="card-title">Card title</h5>
-                      <p className="card-text">This is a longer card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
+                    <div className="col-lg-4">
+                      <h2 className="mb-4 text-primary font-weight-600">
+                        Latest news
+                      </h2>
+                      <div className="row">
+                        <div className="col-sm-12">
+                          <div className="border-bottom pb-4 pt-4">
+                            <div className="row">
+                              <div className="col-sm-8">
+                                <h5 className="font-weight-600 mb-1">
+                                  Ways to stay social online while in self..
+                                </h5>
+                                <p className="fs-13 text-muted mb-0">
+                                  <span className="mr-2">Photo </span>10 Minutes ago
+                                </p>
+                              </div>
+                              <div className="col-sm-4">
+                                <div className="rotate-img">
+                                  <img
+                                    src="../assets/images/business/business_1.png"
+                                    alt="banner"
+                                    className="img-fluid"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-sm-12">
+                          <div className="border-bottom pb-4 pt-4">
+                            <div className="row">
+                              <div className="col-sm-8">
+                                <h5 className="font-weight-600 mb-1">
+                                  Premier League players join charity..
+                                </h5>
+                                <p className="fs-13 text-muted mb-0">
+                                  <span className="mr-2">Photo </span>10 Minutes ago
+                                </p>
+                              </div>
+                              <div className="col-sm-4">
+                                <div className="rotate-img">
+                                  <img
+                                    src="../assets/images/business/business_2.png"
+                                    alt="banner"
+                                    className="img-fluid"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-sm-12">
+                          <div className="pt-4">
+                            <div className="row">
+                              <div className="col-sm-8">
+                                <h5 className="font-weight-600 mb-1">
+                                  UK Athletics board changed stance on..
+                                </h5>
+                                <p className="fs-13 text-muted mb-0">
+                                  <span className="mr-2">Photo </span>10 Minutes ago
+                                </p>
+                              </div>
+                              <div className="col-sm-4">
+                                <div className="rotate-img">
+                                  <img
+                                    src="../assets/images/business/business_3.png"
+                                    alt="banner"
+                                    className="img-fluid"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="trending">
+                        <h2 className="mb-4 text-primary font-weight-600">
+                          Trending
+                        </h2>
+                        <div className="mb-4">
+                          <div className="rotate-img">
+                            <img
+                              src="../assets/images/business/business_4.png"
+                              alt="banner"
+                              className="img-fluid"
+                            />
+                          </div>
+                          <h3 className="mt-3 font-weight-600">
+                            Virus Kills Member Of Advising Iran’s Supreme
+                          </h3>
+                          <p className="fs-13 text-muted mb-0">
+                            <span className="mr-2">Photo </span>10 Minutes ago
+                          </p>
+                        </div>
+                        <div className="mb-4">
+                          <div className="rotate-img">
+                            <img
+                              src="../assets/images/business/business_5.png"
+                              alt="banner"
+                              className="img-fluid"
+                            />
+                          </div>
+                          <h3 className="mt-3 font-weight-600">
+                            Virus Kills Member Of Advising Iran’s Supreme
+                          </h3>
+                          <p className="fs-13 text-muted mb-0">
+                            <span className="mr-2">Photo </span>10 Minutes ago
+                          </p>
+                        </div>
+                        <div className="mb-4">
+                          <div className="rotate-img">
+                            <img
+                              src="../assets/images/business/business_6.png"
+                              alt="banner"
+                              className="img-fluid"
+                            />
+                          </div>
+                          <h3 className="mt-3 font-weight-600">
+                            Virus Kills Member Of Advising Iran’s Supreme
+                          </h3>
+                          <p className="fs-13 text-muted mb-0">
+                            <span className="mr-2">Photo </span>10 Minutes ago
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+          {/* {singleSubcategoryName && singleSubcategoryName.map((items) => (
+            <div classNameName="container-scroller">
+              <div className="main-panel">
+                    <div className="childSubcategory">
+                        <div className="container">
+                            <div className="d-lg-flex align-items-center justify-content-between">
+                                <div className="d-flex align-items-center">
+                                   <div className="nav-item"> 
+                                    <a style={{color: 'white', margin:'10px'}}>{items.subcategory_name}</a>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              <div className="row row-cols-6 g-8" style={{ marginTop : '10px',marginLeft:'9px'}}>
+              {items?.Childcategories?.map((data) => (
+                // console.log('DATA~~~~~~~~~~>>>', data.id)
+                <div className="col">
+                  <div className="cards" onClick={() => handleClick(data.id)}>
+                    <img src={data.image} className="card-img-top" alt="image" />
+                    <div className="card-body">
+                      <h6 className="card-title bold">{data.title}</h6>
+                    </div>
+                  </div>
+                </div>
+                ))}
+              </div>
+              </div>
+               ))} */}
             </div>
     )
 }

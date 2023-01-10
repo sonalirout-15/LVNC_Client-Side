@@ -51,14 +51,11 @@ const Search = () => {
                                                  <ul className="navbar-top-left-menu" style={{ color : '#032a63', fontSize:'18px'}}>{item?.category_name}
                                                  <div className="nav-item">
                                                     { item?.Subcategories?.map((items) => (
-                                                       
                                                         <Link to={`${(items.subcategory_name).toLowerCase()}/${(items.subcategory_name).toLowerCase()}`} className="nav-link" style={{ color : 'black', fontSize:'12px'}}>{items?.subcategory_name}</Link>
-                                                    ))}
-                                                   
+                                                    ))}   
                                                  </div>
                                              </ul>
-                                            ))} 
-                                            
+                                            ))}  
                                         </ul>
                                     </div>
                                 </div>

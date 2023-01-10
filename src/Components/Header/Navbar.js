@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link  } from "react-router-dom";
-import { loadCategoryStart } from "../../Redux/Actions/CategoryAction";
+import { getSingleCategoryStart, loadCategoryStart } from "../../Redux/Actions/CategoryAction";
 
 const Navbar = () => {
     const dispatch = useDispatch();
@@ -16,7 +16,19 @@ const Navbar = () => {
     useEffect(() => {
         setData(categories)
     }, [categories])
+    
+    
+    // const handleMouseOver = (item) => {
+    //     item?.map((cat_id) => {
+    //         // console.log('ITEMS~~~~~~~~~~>>>>', item)
+    //         dispatch(getSingleCategoryStart(cat_id?.category_ref_id))
+    //         // console.log('ITEMS~~~~~~~~~~>>>>', cat_id?.category_ref_id)
+    //     })
+    // }
 
+    // const singleCategory = useSelector((state) => state?.categoryData?.categoryData[0]?.Subcategories);
+    // console.log('SINGLE-CATEGORY~~~~~~~~~~ >>>>', singleCategory)
+    
     return (
         <>
             <header id="header">
@@ -93,8 +105,9 @@ const Navbar = () => {
                                                     {item.header === 1 && 
                                                      <Link 
                                                         className="nav-link"
-                                                        to={`/${(item.category_name).toLowerCase()}/${item.id}`}>{item.category_name}
-                                                    </Link>}
+                                                        to={`/${(item.category_name)}`}>{item.category_name}
+                                                    </Link>
+                                                    }
                                                 </li>
                                             ))}
                                             <li className="nav-item">
