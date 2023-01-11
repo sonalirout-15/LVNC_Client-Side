@@ -26,7 +26,6 @@ export function* onGetSingleLatestNewsStartAsync({ payload }) {
     try {
         const response = yield call(getSingleLatestNewsApi, payload);
         if (response.data.status === 200) {
-            console.log('RESPONSE~~~~~~~~~~~>', response.data.latestnewsData)
             yield put(getSingleLatestNewsSuccess(response.data.latestnewsData))
         }
     } catch (error) {

@@ -8,6 +8,23 @@ import { loadChildSubcategoryStart } from "../../Redux/Actions/ChildSubcategoryA
 import { loadLatestNewsStart } from "../../Redux/Actions/LatestNewsAction";
 import { loadMattersStart } from "../../Redux/Actions/MattersAction";
 
+// const ReadMore = ({ children }) => {
+//   const text = children;
+//   const [isReadMore, setIsReadMore] = useState(true);
+//   const toggleReadMore = () => {
+//     setIsReadMore(!isReadMore);
+//   };
+//   return (
+//     <p className="text">
+//       {isReadMore ? text.slice(0, 150) : text}
+//       <span onClick={toggleReadMore} className="read-or-hide">
+//         {isReadMore ? "...read more" : " show less"}
+//       </span>
+//     </p>
+//   );
+// };
+
+
 const Home = () => {
   const dispatch = useDispatch();
   const history = useHistory()
@@ -44,16 +61,24 @@ const Home = () => {
   const categories = useSelector((state) => state?.categoryData?.categories?.categoryData?.rows);
   const [data, setData] = useState(categories);
 
-  const categoriesData = useSelector((state) => state?.categoryData?.categories?.categoryData?.rows[0]?.Subcategories[0]?.Childcategories);
-  // console.log('CATEGORIESDATA~~~~~~~~~~~>>>>>', categoriesData);
-  const [datas, setDatas] = useState(categoriesData);
+  const categoriesData = useSelector((state) => state?.categoryData?.categories?.categoryData?.rows[0]);
+  // console.log('CATEGORIES-DATA~~~~~~~>>>>', categoriesData)
+
+
+  const singleCategoryData = useSelector((state) => state?.categoryData?.categories?.categoryData?.rows[0]?.Subcategories[0]?.Childcategories);
+  console.log('SINGLE-CATEGORY-DATA~~~~~~~~~~~~~>>>>', singleCategoryData)
+  const [datas, setDatas] = useState(singleCategoryData);
 
   const subcatgeories = useSelector((state) => state?.subcategory?.subcategories?.rows);
   // console.log('SUBCATEGORIES~~~~~~~~~~~>>>>>', subcatgeories);
   const [subcategoryData , setSubcategoryData] = useState(subcatgeories)
 
   const childSubcategoryData = useSelector((state) => state?.childSubcategory?.childSubcatgeory?.rows);
-  console.log('CHILD-SUBCATEGORYDATA~~~~~~~>>>>', childSubcategoryData)
+  const firstIndexData = categoriesData;
+  const secondIndexData = categoriesData;
+  const thirdIndexData = categoriesData;
+  // console.log('LENGTH!!!!!!!', firstIndexData)
+  // console.log('CHILD-SUBCATEGORYDATA~~~~~~~>>>>', childSubcategoryData)
   const[childSubcategory , setChildSubcategory] = useState(childSubcategoryData)
 
   const mattersData = useSelector((state) => state?.matters?.matters?.mettersData?.rows)
@@ -75,8 +100,8 @@ const Home = () => {
   }, [categories])
 
   useEffect(() => {
-    setDatas(categoriesData)
-  }, [categoriesData])
+    setDatas(singleCategoryData)
+  }, [singleCategoryData])
 
   useEffect(() => {
     setChildSubcategory(childSubcategoryData)
@@ -150,8 +175,7 @@ const Home = () => {
                     {latestnewsdata && latestnewsdata.map((item) => (
                       <div
                       className="d-flex border-bottom-blue pt-3 pb-4 align-items-center justify-content-between"
-                      onClick= {() => history.push(`/latestNewsData/${item.id}`)}
-                      >
+                      onClick= {() => history.push(`/latestNewsData/${item.id}`)}>
                         <div className="pr-3">
                           <h5>{item.title}</h5>
                           <div className="fs-12">
@@ -225,99 +249,102 @@ const Home = () => {
                 </div>
               </div>
             </div>
-              <div class="row" data-aos="fade-up" >
-              <div className="col-sm-10 grid-margin">
-                <div className="card">
-                  <div className="card-body">
-                    <div className="row">
-                      <div className="col-lg-8">
-                        <div className="card-title">
+            <div class="row" data-aos="fade-up">
+              <div class="col-sm-12 grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-lg-8">
+                        <div class="card-title">
                           Video
                         </div>
-                        <div className="row">
-                          <div className="col-sm-6 grid-margin">
-                            <div className="position-relative">
-                              <div className="rotate-img">
+                        <div class="row">
+                          <div class="col-sm-6 grid-margin">
+                            <div class="position-relative">
+                              <div class="rotate-img">
                                 <img
                                   src="assets/images/dashboard/home_7.jpg"
                                   alt="thumb"
-                                  className="img-fluid"
+                                  class="img-fluid"
                                 />
                               </div>
-                              <div className="badge-positioned w-90">
+                              <div class="badge-positioned w-90">
                                 <div
-                                  className="d-flex justify-content-between align-items-center">
+                                  class="d-flex justify-content-between align-items-center">
                                   <span
-                                    className="badge badge-danger font-weight-bold">Lifestyle</span>
-                                  <div className="video-icon">
-                                    <i className="mdi mdi-play"></i>
+                                    class="badge badge-danger font-weight-bold">Lifestyle</span>
+                                  <div class="video-icon">
+                                    <i class="mdi mdi-play"></i>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
 
-                          <div className="col-sm-6 grid-margin">
-                            <div className="position-relative">
-                              <div className="rotate-img">
+                          <div class="col-sm-6 grid-margin">
+                            <div class="position-relative">
+                              <div class="rotate-img">
                                 <img
                                   src="assets/images/dashboard/home_8.jpg"
                                   alt="thumb"
-                                  className="img-fluid"
+                                  class="img-fluid"
                                 />
                               </div>
-                              <div className="badge-positioned w-90">
+                              <div class="badge-positioned w-90">
                                 <div
-                                  className="d-flex justify-content-between align-items-center">
+                                  class="d-flex justify-content-between align-items-center">
                                   <span
-                                    className="badge badge-danger font-weight-bold">National News</span>
-                                  <div className="video-icon">
-                                    <i className="mdi mdi-play"></i>
+                                    class="badge badge-danger font-weight-bold">National News</span>
+                                  <div class="video-icon">
+                                    <i class="mdi mdi-play"></i>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                        <div className="row">
-                          <div className="col-sm-6 grid-margin">
-                            <div className="position-relative">
-                              <div className="rotate-img">
+                        <div class="row">
+                          <div class="col-sm-6 grid-margin">
+                            <div class="position-relative">
+                              <div class="rotate-img">
                                 <img
                                   src="assets/images/dashboard/home_9.jpg"
                                   alt="thumb"
-                                  className="img-fluid"
+                                  class="img-fluid"
                                 />
                               </div>
-                              <div className="badge-positioned w-90">
+                              <div class="badge-positioned w-90">
                                 <div
-                                  className="d-flex justify-content-between align-items-center">
+                                  class="d-flex justify-content-between align-items-center"
+                                >
                                   <span
-                                    className="badge badge-danger font-weight-bold">Lifestyle</span>
-                                  <div className="video-icon">
-                                    <i className="mdi mdi-play"></i>
+                                    class="badge badge-danger font-weight-bold"
+                                    >Lifestyle</span>
+                                  <div class="video-icon">
+                                    <i class="mdi mdi-play"></i>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
 
-                          <div className="col-sm-6 grid-margin">
-                            <div className="position-relative">
-                              <div className="rotate-img">
+                          <div class="col-sm-6 grid-margin">
+                            <div class="position-relative">
+                              <div class="rotate-img">
                                 <img
                                   src="assets/images/dashboard/home_10.jpg"
                                   alt="thumb"
-                                  className="img-fluid"
+                                  class="img-fluid"
                                 />
                               </div>
-                              <div className="badge-positioned w-90">
+                              <div class="badge-positioned w-90">
                                 <div
-                                  className="d-flex justify-content-between align-items-center">
+                                  class="d-flex justify-content-between align-items-center">
                                   <span
-                                    className="badge badge-danger font-weight-bold">National News</span>
-                                  <div className="video-icon">
-                                    <i className="mdi mdi-play"></i>
+                                    class="badge badge-danger font-weight-bold"
+                                    >National News</span>
+                                  <div class="video-icon">
+                                    <i class="mdi mdi-play"></i>
                                   </div>
                                 </div>
                               </div>
@@ -325,39 +352,95 @@ const Home = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="col-lg-4">
+                      <div class="col-lg-4">
                         <div
-                          className="d-flex justify-content-between align-items-center">
-                          <div className="card-title">
+                          class="d-flex justify-content-between align-items-center"
+                        >
+                          <div class="card-title">
                             Latest Video
                           </div>
-                          <p className="mb-3">See all</p>
+                          <p class="mb-3">See all</p>
                         </div>
-                        {latestNewsData && latestNewsData.map((item) => {
-                          return (
                         <div
-                          className="d-flex justify-content-between align-items-center border-bottom pb-2"
-                          onClick={() => history.push('/latestNews/:id')}>
-                          <div className="div-w-70 mr-3">
-                            <div className="rotate-img">
-                              {/* <img
-                                src={item.image}
+                          class="d-flex justify-content-between align-items-center border-bottom pb-2"
+                        >
+                          <div class="div-w-80 mr-3">
+                            <div class="rotate-img">
+                              <img
+                                src="assets/images/dashboard/home_11.jpg"
                                 alt="thumb"
-                                className="img-fluid"
-                              /> */}
-                              <video
-                                  className="img-fluid" 
-                                  controls style={{ height: '50px' }}>
-                                  <source src={item.video} type="video/MP4" />
-                              </video>
+                                class="img-fluid"
+                              />
                             </div>
                           </div>
-                          <h5 className="font-weight-600 mb-0">
-                           {item.title}
-                          </h5>
+                          <h3 class="font-weight-600 mb-0">
+                            Apple Introduces Apple Watch
+                          </h3>
                         </div>
-                          )
-                        })}
+                        <div
+                          class="d-flex justify-content-between align-items-center border-bottom pt-3 pb-2"
+                        >
+                          <div class="div-w-80 mr-3">
+                            <div class="rotate-img">
+                              <img
+                                src="assets/images/dashboard/home_12.jpg"
+                                alt="thumb"
+                                class="img-fluid"
+                              />
+                            </div>
+                          </div>
+                          <h3 class="font-weight-600 mb-0">
+                            SEO Strategy & Google Search
+                          </h3>
+                        </div>
+                        <div
+                          class="d-flex justify-content-between align-items-center border-bottom pt-3 pb-2"
+                        >
+                          <div class="div-w-80 mr-3">
+                            <div class="rotate-img">
+                              <img
+                                src="assets/images/dashboard/home_13.jpg"
+                                alt="thumb"
+                                class="img-fluid"
+                              />
+                            </div>
+                          </div>
+                          <h3 class="font-weight-600 mb-0">
+                            Cycling benefit & disadvantag
+                          </h3>
+                        </div>
+                        <div
+                          class="d-flex justify-content-between align-items-center border-bottom pt-3 pb-2"
+                        >
+                          <div class="div-w-80 mr-3">
+                            <div class="rotate-img">
+                              <img
+                                src="assets/images/dashboard/home_14.jpg"
+                                alt="thumb"
+                                class="img-fluid"
+                              />
+                            </div>
+                          </div>
+                          <h3 class="font-weight-600">
+                            The Major Health Benefits of
+                          </h3>
+                        </div>
+                        <div
+                          class="d-flex justify-content-between align-items-center pt-3"
+                        >
+                          <div class="div-w-80 mr-3">
+                            <div class="rotate-img">
+                              <img
+                                src="assets/images/dashboard/home_15.jpg"
+                                alt="thumb"
+                                class="img-fluid"
+                              />
+                            </div>
+                          </div>
+                          <h3 class="font-weight-600 mb-0">
+                            Powerful Moments of Peace
+                          </h3>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -374,28 +457,28 @@ const Home = () => {
                           Sport light
                         </div>
                         <div class="row">
-                          {childSubcategory && childSubcategory.map((item) => {
-                            
                           <div class="col-xl-6 col-lg-8 col-sm-6">
                             <div class="rotate-img">
                               <img
-                                src={item?.image}
+                                src="assets/images/dashboard/home_16.jpg"
                                 alt="thumb"
                                 class="img-fluid"
                               />
                             </div>
                             <h2 class="mt-3 text-primary mb-2">
-                            {item?.title}
+                              Newsrooms exercise..
                             </h2>
                             <p class="fs-13 mb-1 text-muted">
-                              <span class="mr-2">Photo </span>
+                              <span class="mr-2">Photo </span>10 Minutes ago
                             </p>
                             <p class="my-3 fs-15">
-                             {item?.Description}
+                              Lorem Ipsum has been the industry's standard dummy
+                              text ever since the 1500s, when an unknown printer
+                              took
                             </p>
-                            <a href="#" class="font-weight-600 fs-16 text-dark">Read more</a>
-                          </div> 
-                          })}
+                            <a href="#" class="font-weight-600 fs-16 text-dark"
+                              >Read more</a>
+                          </div>
                           <div class="col-xl-6 col-lg-4 col-sm-6">
                             <div class="border-bottom pb-3 mb-3">
                               <h3 class="font-weight-600 mb-0">

@@ -102,11 +102,17 @@ const Navbar = () => {
                                             {data && data.map((item) => (
                                                 // console.log('ITEM======?', item?.Subcategories[0]?.category_ref_id)
                                                 <li className="nav-item">
-                                                    {item.header === 1 && 
-                                                     <Link 
-                                                        className="nav-link"
-                                                        to={`/${(item.category_name)}`}>{item.category_name}
-                                                    </Link>
+                                                    {item.header === 1 ? (
+                                                          <Link 
+                                                          className="nav-link"
+                                                          to={`/${item.category_name}`}>{item.category_name}
+                                                          </Link>
+                                                    ) : null
+                                                    //  <Link 
+                                                    //     className="nav-link"
+                                                    //     to={`/${(item.category_name)}`}>{item.category_name}
+                                                    // </sLink>
+                                                    
                                                     }
                                                 </li>
                                             ))}

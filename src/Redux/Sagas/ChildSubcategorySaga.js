@@ -29,8 +29,7 @@ export function* onGetSingleChildSubcategoryStartAsync({ payload }) {
     try {
         const response = yield call(getSingleChildSubcategoryApi, payload);
         if (response.data.message === "Success") {
-            console.log('PAYLOAD~~~~~~~~~~~~>>', response.data.categoryData)
-            yield put(getSingleChildSubcategorySuccess(response.data))
+            yield put(getSingleChildSubcategorySuccess(response.data.categoryData))
         }
     } catch (error) {
         yield put(getSingleChildSubcategoryError(error.response))

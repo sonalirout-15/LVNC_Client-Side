@@ -41,9 +41,6 @@ function App() {
       <Route path='/:category_name' component={Subcategory}/>
       <Route path='/:id' component={ChildSubcategory}/>
       <Route path='/matters/:id' component={MattersData}/>
-      {/* <Route path='/:id' component={ChildSubcategory}/> */}
-      {/* <Route path='/childSubcategoryData/:data' component={ChildSubcategoryData}/> */}
-      {/* <Route path='/latestNews' component={LatestNews}/>   */}
       <Route path='/contact' component={Contact} />
       <Route path='/search' component={Search}/>
       {
@@ -51,47 +48,6 @@ function App() {
       }
 
     </div>
-
-    // <Router>
-    //   <Switch>
-    //     <Route path='/'>
-    //       <Home />
-    //     </Route>
-    //     <Route path='/login'>
-    //       <Login />
-    //     </Route>
-    //     <Route path="/forgot-password">
-    //       <ForgotPassword />
-    //     </Route>
-    //     <Route path="/signup">
-    //       <Signup />
-    //     </Route>
-    //     <Route path="/videos">
-    //       <Videos />
-    //     </Route>
-    //     <Route path="/advertise">
-    //       <Advertise />
-    //     </Route>
-    //     <Route path="/event">
-    //       <AboutUs />
-    //     </Route>
-    //     <Route path="/:category_name/:id">
-    //       <Event />
-    //     </Route>
-    //     <Route path="/childSubcategoryData/:data">
-    //       <Subcategory />
-    //     </Route>
-    //     <Route path="/latestNews/:id">
-    //       <ChildSubcategoryData />
-    //     </Route>
-    //     <Route path="/contact">
-    //       <LatestNews />
-    //     </Route>
-    //     <Route path="/search">
-    //       <ForgotPassword />
-    //     </Route>
-    //   </Switch>
-    // </Router >
   );
 }
 

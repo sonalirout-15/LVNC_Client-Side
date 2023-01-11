@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { getSingleCategoryStart } from "../../Redux/Actions/CategoryAction";
@@ -24,10 +24,9 @@ const Subcategory = () => {
      })
     }
 
-    const handleData = (items) => {
-      console.log('ITEMS~~~~~~~~~~~~>>>', items.id);
-      history.push(`/${items.id}`);
-    }
+    // const handleData = (items) => {
+    //   history.push(`/${items.id}`);
+    // }
 
     return (
         <div>
@@ -65,7 +64,7 @@ const Subcategory = () => {
                     <div className="col-lg-8">
                       {singleCategoryData && singleCategoryData.map((items) => {
                             return (
-                        <div className="row" onClick={() => handleData(items)}>
+                        <div className="row" onClick={() => history.push(`/${items.id}`)}>
                         <div className="col-sm-4 grid-margin">
                           <div className="rotate-img">
                             <img

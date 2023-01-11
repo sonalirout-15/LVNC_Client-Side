@@ -11515,45 +11515,6 @@ body {
   margin-left: 20px
 }
 
-.main-content {
-  width: 600px;
-  height: 900px;
-  padding: 10px;
-  border: 1px solid grey;
-  margin-top: 20px;
-  margin-left: 30%;
-  margin-bottom: 20px;
-}
-
-.content {
-  margin-right: 83%;
-  color: black;
-  font-size: small;
-}
-
-.title {
-  font-weight: 100;
-  color: black;
-}
-
-.image {
-  margin-top: 10px;
-}
-
-.description {
-  margin-top: 10px;
-  font-size: small;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 100px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 12px 16px;
-  z-index: 1;
-}
 
 .nav-link:hover .dropdown-content {
   display: block;
