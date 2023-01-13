@@ -2,7 +2,7 @@ import * as types from '../ActionTypes/ChildSubcategoryActionType'
 
 const initialState = {
     childSubcatgeory :[],
-    childSubcategoryData : [],
+    childSubcategoryData :[],
     loading: false,
     error: null
 }

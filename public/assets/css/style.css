@@ -10568,7 +10568,7 @@ header .navbar-bottom .navbar-toggler {
 
 .content-wrapper {
   background: #e6e7e8;
-  padding: 60px 0;
+  padding: 20px 0;
 }
 
 .content-wrapper .banner-content {
@@ -11467,9 +11467,13 @@ a {
   width: 91%;
   margin-left: 3%;
   text-decoration: white;
-  background-color: black;
+  background-color: black;  
   margin-top: 2%;
 }
+.subcate :hover {
+  border-color: white;
+}
+
 .cat_name {
   color: #032a63;
   margin-top: 33px;
@@ -11518,4 +11522,25 @@ body {
 
 .nav-link:hover .dropdown-content {
   display: block;
+}
+
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+.row {margin: 0 -5px;}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.cards {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
 }

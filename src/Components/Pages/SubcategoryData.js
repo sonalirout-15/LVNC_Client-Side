@@ -1,71 +1,37 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { getSingleCategoryStart } from "../../Redux/Actions/CategoryAction";
 import { getSingleSubcategoryStart } from "../../Redux/Actions/SubcategoryAction";
 
-
-const Subcategory = () => {
+const SubcategoryData = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const {category_name} = useParams();
+    const {id} = useParams();
 
-    const singleCategoryName = useSelector((state) => state?.categoryData?.categoryData);
-    const singleSubcategoryName = useSelector((state) => state?.categoryData?.categoryData[0]?.Subcategories);
-  
+    const singleSubcategoryName = useSelector((state) => state?.subcategory?.cateData[0]?.subcategory_name);
+    const singleSubcategoryData = useSelector((state) => state?.subcategory?.cateData[0]?.Childcategories);
+    const singleLatestNews = useSelector((state) => state?.subcategory?.cateData[0]?.latestnews);
 
     useEffect(() => {
-        dispatch(getSingleCategoryStart(category_name))
+        dispatch(getSingleSubcategoryStart(id))
     },[])
 
-
-    // const handleClickSubcategory = (item) => {
-    //   item?.map((subcate_id) => {
-    //     // console.log('SUBCATE-ID~~~~~~~>>>', subcate_id)
-    //     dispatch(getSingleSubcategoryStart(subcate_id?.Subcategory_ref_id))
-    //  })
-    // }
-
-
     return (
-        <div>
-          {singleCategoryName && singleCategoryName.map((name) => (
-            <h3 className="cat_name">{name.category_name} News</h3>
-          ))}   
-       <div className="container-scroller">
-              <div className="main-panel">
-                    <div className="subcate">
-                        <div className="container">
-                            <div className="d-lg-flex align-items-center justify-content-between">
-                                <div className="d-flex align-items-center">
-                                    {singleSubcategoryName && singleSubcategoryName.map((item) => {
-                                      return (
-                                   <div className="nav-item"> 
-                                   <a style={{color: 'white', margin:'10px'}}  onClick={() => history.push(`subcategoryData/${item.id}`)}>{item.subcategory_name}</a>
-                                    {/* <a style={{color: 'white', margin:'10px'}} onClick={() => handleClickSubcategory(item?.Childcategories)}>{item.subcategory_name}</a> */}
-                                   </div>     
-                                      )
-                                    })}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-          </div>
-          {/* <div className="content-wrapper">
+     <div className="content-wrapper">
           <div className="container">
             <div className="col-sm-12">
               <div className="card" data-aos="fade-up">
                 <div className="card-body">
                   <div className="row">
                     <div className="col-sm-12">
+                        <h2>{singleSubcategoryName}</h2>
                     </div>
-                  </div>
+                  </div><br />
                   <div className="row">
                     <div className="col-lg-8">
-                      {singleSubCategoryData && singleSubCategoryData.map((items) => {
+                      {singleSubcategoryData && singleSubcategoryData.map((items) => {
                             return (
-                        <div className="row" onClick={() => history.push(`./${items.id}`)}>
+                        <div className="row" onClick={() => history.push(`childSubcategory/${items.id}`)}>
                         <div className="col-sm-4 grid-margin">
                           <div className="rotate-img">
                             <img
@@ -94,7 +60,7 @@ const Subcategory = () => {
                       <div className="row">
                         <div className="col-sm-12">
                           <div className="border-bottom pb-4 pt-4">
-                            {singleLatestNewsData && singleLatestNewsData.map((item) => {
+                            {singleLatestNews && singleLatestNews.map((item) => {
                               return (
                             <div className="row" onClick= {() => history.push(`/latestNews/${item.id}`)}>
                               <div className="col-sm-8">
@@ -176,39 +142,9 @@ const Subcategory = () => {
               </div>
             </div>
           </div>
-        </div> */}
-          {singleSubcategoryName && singleSubcategoryName.map((items) => (
-            <div classNameName="container-scroller">
-              <div className="main-panel">
-                    <div className="childSubcategory">
-                        <div className="container">
-                            <div className="d-lg-flex align-items-center justify-content-between">
-                                <div className="d-flex align-items-center">
-                                   <div className="nav-item"> 
-                                    <a style={{color: 'white', margin:'10px'}}>{items.subcategory_name}</a>
-                                   </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-              <div className="row row-cols-6 g-8" style={{ marginTop : '10px',marginLeft:'9px'}}>
-              {items?.Childcategories?.map((data) => (
-                // console.log('DATA~~~~~~~~~~>>>', data.id)
-                <div className="col">
-                  <div className="cards" onClick={() => history.push(`childSubcategory/${data.id}`)}>
-                    <img src={data.image} className="card-img-top" alt="image" />
-                    <div className="card-body">
-                      <h6 className="card-title bold">{data.title}</h6>
-                    </div>
-                  </div>
-                </div>
-                ))}
-              </div>
-              </div>
-               ))}
-            </div>
+        </div> 
     )
 }
 
-export default Subcategory;
+
+export default SubcategoryData;

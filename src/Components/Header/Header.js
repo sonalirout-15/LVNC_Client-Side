@@ -21,7 +21,7 @@ const Header = () => {
                         <div className="container">
                             <div className="d-lg-flex align-items-center justify-content-between">
                                 <div className="d-flex align-items-center">
-                                    <span className="badge badge-dark mr-2" style={{ backgroundColor: 'black' }}>Flash News</span>
+                                    <span className="badge badge-dark mr-2" style={{ backgroundColor: 'black' }}>Breaking News</span>
                                     {data && data.map((item) => (
                                         <div>{item.imageName}</div>
                                     ))}

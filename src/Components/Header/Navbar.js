@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link  } from "react-router-dom";
-import { getSingleCategoryStart, loadCategoryStart } from "../../Redux/Actions/CategoryAction";
+import { Link, useHistory  } from "react-router-dom";
+import {  loadCategoryStart } from "../../Redux/Actions/CategoryAction";
 
 const Navbar = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(() => {
         dispatch(loadCategoryStart())
@@ -38,7 +39,6 @@ const Navbar = () => {
                             <div className="d-flex justify-content-between align-items-center">
                                 <ul className="navbar-top-left-menu">
                                 <li className="nav-item">
-                                        <Link to="/event" className="nav-link">Videos</Link>
                                     </li>
                                     <li className="nav-item">
                                         <Link to="/advertise" className="nav-link">Advertise</Link>
@@ -82,14 +82,12 @@ const Navbar = () => {
                                         data-target="#navbarSupportedContent"
                                         aria-controls="navbarSupportedContent"
                                         aria-expanded="false"
-                                        aria-label="Toggle navigation"
-                                    >
+                                        aria-label="Toggle navigation">
                                         <span className="navbar-toggler-icon"></span>
                                     </button>
                                     <div
                                         className="navbar-collapse justify-content-center collapse"
-                                        id="navbarSupportedContent"
-                                    >
+                                        id="navbarSupportedContent">
                                         <ul className="navbar-nav d-lg-flex justify-content-between align-items-center">
                                             <li>
                                                 <button className="navbar-close">
@@ -100,24 +98,18 @@ const Navbar = () => {
                                                 <Link className="nav-link" to="/">Home</Link>
                                             </li>
                                             {data && data.map((item) => (
-                                                // console.log('ITEM======?', item?.Subcategories[0]?.category_ref_id)
                                                 <li className="nav-item">
                                                     {item.header === 1 ? (
                                                           <Link 
                                                           className="nav-link"
-                                                          to={`/${item.category_name}`}>{item.category_name}
+                                                          to={(`/./${(item.category_name).toLowerCase()}`)}>{item.category_name}
                                                           </Link>
-                                                    ) : null
-                                                    //  <Link 
-                                                    //     className="nav-link"
-                                                    //     to={`/${(item.category_name)}`}>{item.category_name}
-                                                    // </sLink>
-                                                    
+                                                        ) : (null)
                                                     }
                                                 </li>
                                             ))}
                                             <li className="nav-item">
-                                                <Link className="nav-link" to="/contact">CONTACT</Link>
+                                                <Link className="nav-link" to="/contact">Contact</Link>
                                             </li>
                                         </ul>
                                     </div>

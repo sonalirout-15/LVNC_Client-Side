@@ -1,29 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {  useHistory } from "react-router-dom";
-import {loadCategoryStart } from '../../../src/Redux/Actions/CategoryAction';
-import { getSingleSubcategoryStart, loadSubcategoryStart } from '../../../src/Redux/Actions/SubcategoryAction'
+import {loadCategoryStart } from '../../Redux/Actions/CategoryAction';
 import { loadBannerImageStart } from "../../Redux/Actions/BannerImageAction";
-import { loadChildSubcategoryStart } from "../../Redux/Actions/ChildSubcategoryAction";
 import { loadLatestNewsStart } from "../../Redux/Actions/LatestNewsAction";
 import { loadMattersStart } from "../../Redux/Actions/MattersAction";
-
-// const ReadMore = ({ children }) => {
-//   const text = children;
-//   const [isReadMore, setIsReadMore] = useState(true);
-//   const toggleReadMore = () => {
-//     setIsReadMore(!isReadMore);
-//   };
-//   return (
-//     <p className="text">
-//       {isReadMore ? text.slice(0, 150) : text}
-//       <span onClick={toggleReadMore} className="read-or-hide">
-//         {isReadMore ? "...read more" : " show less"}
-//       </span>
-//     </p>
-//   );
-// };
-
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -37,14 +18,6 @@ const Home = () => {
     dispatch(loadCategoryStart())
   }, [])
 
-  useEffect(() => {
-    dispatch(loadSubcategoryStart())
-  },[])
-
-  useEffect(() => {
-    dispatch(loadChildSubcategoryStart())
-  },[])
-
 
   useEffect(() => {
     dispatch(loadMattersStart())
@@ -55,33 +28,15 @@ const Home = () => {
     dispatch(loadLatestNewsStart())
   }, [])
 
+
   const bannerImageData = useSelector((state) => state?.bannerImage?.bannerImageData?.BannerData)
   const [bannerData, setBannnerData] = useState(bannerImageData)
 
   const categories = useSelector((state) => state?.categoryData?.categories?.categoryData?.rows);
   const [data, setData] = useState(categories);
 
-  const categoriesData = useSelector((state) => state?.categoryData?.categories?.categoryData?.rows[0]);
-  // console.log('CATEGORIES-DATA~~~~~~~>>>>', categoriesData)
-
-
-  const singleCategoryData = useSelector((state) => state?.categoryData?.categories?.categoryData?.rows[0]?.Subcategories[0]?.Childcategories);
-  console.log('SINGLE-CATEGORY-DATA~~~~~~~~~~~~~>>>>', singleCategoryData)
-  const [datas, setDatas] = useState(singleCategoryData);
-
-  const subcatgeories = useSelector((state) => state?.subcategory?.subcategories?.rows);
-  // console.log('SUBCATEGORIES~~~~~~~~~~~>>>>>', subcatgeories);
-  const [subcategoryData , setSubcategoryData] = useState(subcatgeories)
-
-  const childSubcategoryData = useSelector((state) => state?.childSubcategory?.childSubcatgeory?.rows);
-  const firstIndexData = categoriesData;
-  const secondIndexData = categoriesData;
-  const thirdIndexData = categoriesData;
-  // console.log('LENGTH!!!!!!!', firstIndexData)
-  // console.log('CHILD-SUBCATEGORYDATA~~~~~~~>>>>', childSubcategoryData)
-  const[childSubcategory , setChildSubcategory] = useState(childSubcategoryData)
-
   const mattersData = useSelector((state) => state?.matters?.matters?.mettersData?.rows)
+
   const [matterData, setMattersData] = useState(mattersData)
 
   const latestNewsData = useSelector((state) => state?.latestnews?.latestNewsData?.rows)
@@ -91,21 +46,11 @@ const Home = () => {
     setBannnerData(bannerImageData)
   }, [categories])
 
-  useEffect(() => {
-    setSubcategoryData(subcatgeories)
-  },[subcatgeories])
 
   useEffect(() => {
     setData(categories)
   }, [categories])
 
-  useEffect(() => {
-    setDatas(singleCategoryData)
-  }, [singleCategoryData])
-
-  useEffect(() => {
-    setChildSubcategory(childSubcategoryData)
-  },[childSubcategoryData])
 
   // const handleClickCategory = (item) => {
   //   item?.map((cat_id) => {
@@ -113,15 +58,14 @@ const Home = () => {
   //   })
   // }
 
-  const subCatData = useSelector((state) => state?.subcategory?.cateData?.categoryData);
 
   // const handleClickSubcategory = (item) => {
   //   dispatch(getSingleSubcategoryStart(item))
   // } 
 
-  const handleClickSubcat = (data) => {
-    dispatch(getSingleSubcategoryStart(data))
-  }
+  // const handleClickSubcat = (data) => {
+  //   dispatch(getSingleSubcategoryStart(data))
+  // }
 
 
   useEffect(() => {
@@ -144,8 +88,8 @@ const Home = () => {
         <div className="content-wrapper">
           <div className="container">
             <div className="row" data-aos="fade-up">
-              {bannerData && bannerData.map((item) => (
               <div className="col-xl-8 stretch-card grid-margin">
+              {bannerData && bannerData.map((item) => (
                 <div class="position-relative">
                   <img
                     src={item.image}
@@ -161,25 +105,25 @@ const Home = () => {
                     <h4 className="mb-2">
                      {item.imageName}
                     </h4>
-                    {/* <div className="fs-12">
-                      <span className="mr-2">Photo </span>10 Minutes ago
-                    </div> */}
+                    <div className="fs-12">
+                      <span className="mr-2">Photo </span>{item.updated_at}
+                    </div>
                   </div>
                 </div>
-              </div>
               ) )}
+              </div>
               <div className="col-xl-3 stretch-card grid-margin">
-                <div className="card bg-dark text-white">
-                  <div className="card-body" style={{ backgroundColor: 'black'}}>
+                <div className="card bg-black text-white">
+                  <div className="card-body" >
                     <h3>Latest news</h3>
                     {latestnewsdata && latestnewsdata.map((item) => (
                       <div
                       className="d-flex border-bottom-blue pt-3 pb-4 align-items-center justify-content-between"
-                      onClick= {() => history.push(`/latestNewsData/${item.id}`)}>
+                      onClick= {() => history.push(`/latestNews/${item.id}`)}>
                         <div className="pr-3">
                           <h5>{item.title}</h5>
                           <div className="fs-12">
-                            {/* <span className="mr-2">Photo </span>10 Minutes ago */}
+                            <span className="mr-2">Photo </span>{item.updated_at}
                           </div>
                         </div>
                         <div className="rotate-img">
@@ -194,7 +138,7 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-2 stretch-card grid-margin" style={{ marginTop: '2%' }}>
+              <div className="col-lg-2 stretch-card grid-margin">
                 <div className="card">
                   <div className="card-body">
                     <h2>Category</h2>
@@ -202,7 +146,7 @@ const Home = () => {
                       <ul className="vertical-menu">
                         {item.header === 0 ? (
                           // <li onClick={() => handleClickCategory(item?.Subcategories)}><a>{item.category_name}</a></li>
-                          <li onClick={() => history.push(`/${item.category_name}`)}><a>{item.category_name}</a></li>
+                          <li onClick={() => history.push(`/./${(item.category_name).toLowerCase()}`)}><a>{item.category_name}</a></li>
                         ) : (null)}
                       </ul>
                     ))}
@@ -224,10 +168,10 @@ const Home = () => {
                               class="img-fluid"
                             />
                           </div>
-                          {/* <div class="badge-positioned">
+                          <div class="badge-positioned">
                             <span class="badge badge-danger font-weight-bold"
                               >Flash news</span>
-                          </div> */}
+                          </div>
                         </div>
                       </div>
                       <div class="col-sm-8  grid-margin">
@@ -237,10 +181,10 @@ const Home = () => {
                         <div class="fs-13 mb-2">
                           <span class="mr-2">Photo </span>{item.updatedAt}
                         </div>
-                        {/* <p class="mb-0">
+                        <p class="mb-0">
                           Lorem Ipsum has been the industry's standard dummy
                           text ever since the 1500s, when an
-                        </p> */}
+                        </p>
                       </div>
                     </div>
                       )
@@ -250,7 +194,7 @@ const Home = () => {
               </div>
             </div>
             <div class="row" data-aos="fade-up">
-              <div class="col-sm-12 grid-margin">
+              <div class="col-sm-11 grid-margin">
                 <div class="card">
                   <div class="card-body">
                     <div class="row">
@@ -258,189 +202,63 @@ const Home = () => {
                         <div class="card-title">
                           Video
                         </div>
-                        <div class="row">
+                        {matterData && matterData.map((item) => {
+                          return (
+                        <div class="row" onClick={() => history.push(`videos/${item.id}`)}>
                           <div class="col-sm-6 grid-margin">
                             <div class="position-relative">
                               <div class="rotate-img">
-                                <img
-                                  src="assets/images/dashboard/home_7.jpg"
-                                  alt="thumb"
-                                  class="img-fluid"
-                                />
+                              <video width='250' height='150'
+                                  controls>
+                                  <source src={item.video} type="video/MP4/MKV/AVI" 
+                                  className='img-fluid'/>
+                                  </video>
                               </div>
                               <div class="badge-positioned w-90">
-                                <div
+                                {/* <div
                                   class="d-flex justify-content-between align-items-center">
                                   <span
-                                    class="badge badge-danger font-weight-bold">Lifestyle</span>
+                                    class="badge badge-danger font-weight-bold"></span>
                                   <div class="video-icon">
                                     <i class="mdi mdi-play"></i>
                                   </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="col-sm-6 grid-margin">
-                            <div class="position-relative">
-                              <div class="rotate-img">
-                                <img
-                                  src="assets/images/dashboard/home_8.jpg"
-                                  alt="thumb"
-                                  class="img-fluid"
-                                />
-                              </div>
-                              <div class="badge-positioned w-90">
-                                <div
-                                  class="d-flex justify-content-between align-items-center">
-                                  <span
-                                    class="badge badge-danger font-weight-bold">National News</span>
-                                  <div class="video-icon">
-                                    <i class="mdi mdi-play"></i>
-                                  </div>
-                                </div>
-                              </div>
+                                </div> */}
+                              </div>  
                             </div>
                           </div>
                         </div>
-                        <div class="row">
-                          <div class="col-sm-6 grid-margin">
-                            <div class="position-relative">
-                              <div class="rotate-img">
-                                <img
-                                  src="assets/images/dashboard/home_9.jpg"
-                                  alt="thumb"
-                                  class="img-fluid"
-                                />
-                              </div>
-                              <div class="badge-positioned w-90">
-                                <div
-                                  class="d-flex justify-content-between align-items-center"
-                                >
-                                  <span
-                                    class="badge badge-danger font-weight-bold"
-                                    >Lifestyle</span>
-                                  <div class="video-icon">
-                                    <i class="mdi mdi-play"></i>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="col-sm-6 grid-margin">
-                            <div class="position-relative">
-                              <div class="rotate-img">
-                                <img
-                                  src="assets/images/dashboard/home_10.jpg"
-                                  alt="thumb"
-                                  class="img-fluid"
-                                />
-                              </div>
-                              <div class="badge-positioned w-90">
-                                <div
-                                  class="d-flex justify-content-between align-items-center">
-                                  <span
-                                    class="badge badge-danger font-weight-bold"
-                                    >National News</span>
-                                  <div class="video-icon">
-                                    <i class="mdi mdi-play"></i>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                          )
+                        })}
                       </div>
                       <div class="col-lg-4">
                         <div
-                          class="d-flex justify-content-between align-items-center"
-                        >
+                          class="d-flex justify-content-between align-items-center">
                           <div class="card-title">
                             Latest Video
                           </div>
                           <p class="mb-3">See all</p>
                         </div>
-                        <div
+                        {latestnewsdata && latestnewsdata.map((item) => {
+                          return (
+                        <div 
                           class="d-flex justify-content-between align-items-center border-bottom pb-2"
-                        >
+                          onClick= {() => history.push(`/latestVideo/${item.id}`)}>
                           <div class="div-w-80 mr-3">
                             <div class="rotate-img">
-                              <img
-                                src="assets/images/dashboard/home_11.jpg"
-                                alt="thumb"
-                                class="img-fluid"
-                              />
+                            <video width='300' height='50'
+                                    controls>
+                                    <source src={item.video} 
+                                    type="video/MP4/MKV/AVI" 
+                                    className='img-fluid'/>
+                            </video>
                             </div>
                           </div>
-                          <h3 class="font-weight-600 mb-0">
-                            Apple Introduces Apple Watch
-                          </h3>
+                          <h4 class="font-weight-500 mb-0">
+                            {item.title}
+                          </h4>
                         </div>
-                        <div
-                          class="d-flex justify-content-between align-items-center border-bottom pt-3 pb-2"
-                        >
-                          <div class="div-w-80 mr-3">
-                            <div class="rotate-img">
-                              <img
-                                src="assets/images/dashboard/home_12.jpg"
-                                alt="thumb"
-                                class="img-fluid"
-                              />
-                            </div>
-                          </div>
-                          <h3 class="font-weight-600 mb-0">
-                            SEO Strategy & Google Search
-                          </h3>
-                        </div>
-                        <div
-                          class="d-flex justify-content-between align-items-center border-bottom pt-3 pb-2"
-                        >
-                          <div class="div-w-80 mr-3">
-                            <div class="rotate-img">
-                              <img
-                                src="assets/images/dashboard/home_13.jpg"
-                                alt="thumb"
-                                class="img-fluid"
-                              />
-                            </div>
-                          </div>
-                          <h3 class="font-weight-600 mb-0">
-                            Cycling benefit & disadvantag
-                          </h3>
-                        </div>
-                        <div
-                          class="d-flex justify-content-between align-items-center border-bottom pt-3 pb-2"
-                        >
-                          <div class="div-w-80 mr-3">
-                            <div class="rotate-img">
-                              <img
-                                src="assets/images/dashboard/home_14.jpg"
-                                alt="thumb"
-                                class="img-fluid"
-                              />
-                            </div>
-                          </div>
-                          <h3 class="font-weight-600">
-                            The Major Health Benefits of
-                          </h3>
-                        </div>
-                        <div
-                          class="d-flex justify-content-between align-items-center pt-3"
-                        >
-                          <div class="div-w-80 mr-3">
-                            <div class="rotate-img">
-                              <img
-                                src="assets/images/dashboard/home_15.jpg"
-                                alt="thumb"
-                                class="img-fluid"
-                              />
-                            </div>
-                          </div>
-                          <h3 class="font-weight-600 mb-0">
-                            Powerful Moments of Peace
-                          </h3>
-                        </div>
+                          )
+                        })}
                       </div>
                     </div>
                   </div>
@@ -448,7 +266,7 @@ const Home = () => {
               </div>
             </div>
             <div class="row" data-aos="fade-up">
-              <div class="col-sm-12">
+              <div class="col-sm-11">
                 <div class="card">
                   <div class="card-body">
                     <div class="row">

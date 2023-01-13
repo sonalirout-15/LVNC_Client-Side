@@ -3,7 +3,6 @@ import { Route, useLocation } from 'react-router-dom';
 import Login from './Components/Pages/Auth/Login';
 import Signup from './Components/Pages/Auth/Signup';
 import ForgotPassword from './Components/Pages/Auth/ForgotPassword';
-import Home from './Components/Pages/Home';
 import Videos from './Components/Pages/Videos';
 import Advertise from './Components/Header/Advertise';
 import AboutUs from './Components/Header/AboutUs';
@@ -14,9 +13,12 @@ import Footer from './Components/Footer/Footer';
 import Header from './Components/Header/Header';
 import Search from './Components/Header/Search';
 import LatestNewsData from './Components/Pages/LatestNewsData';
+import LatestVideo from './Components/Pages/LatestVideos';
 import Subcategory from './Components/Pages/Subcategory';
+import SubcategoryData from './Components/Pages/SubcategoryData';
 import ChildSubcategory from './Components/Pages/ChildSubcategory';
 import MattersData from './Components/Pages/MattersData';
+import Home from './Components/Pages/Home';
 
 function App() {
   let location = useLocation()
@@ -29,20 +31,23 @@ function App() {
       {
         location.pathname !== '/login' && location.pathname !=='/signup' && location.pathname !=='/forgot-password' && <Header />
       }
+      
       <Route exact  path='/' component={Home} />
       <Route path='/login' component={Login} />
       <Route path='/forgot-password' component={ForgotPassword} />
       <Route path='/signup' component={Signup}/>
-      <Route path='/videos' component={Videos}/>
+      <Route path='/videos/:id' component={Videos}/>
       <Route path='/advertise' component={Advertise} />
       <Route path='/about' component={AboutUs} />
       <Route path='/event' component={Event} />
-      <Route path='/latestNewsData/:id' component={LatestNewsData}/> 
-      <Route path='/:category_name' component={Subcategory}/>
-      <Route path='/:id' component={ChildSubcategory}/>
+      <Route path='/latestNews/:id' component={LatestNewsData}/>
+      <Route path='/latestVideo/:id' component={LatestVideo} /> 
+      <Route exact path='/./:category_name' component={Subcategory}/>
+      <Route path='/subcategoryData/:id' component={SubcategoryData}/>
+      <Route path='/childSubcategory/:id' component={ChildSubcategory}/>
       <Route path='/matters/:id' component={MattersData}/>
       <Route path='/contact' component={Contact} />
-      <Route path='/search' component={Search}/>
+      <Route path='/search' component={Search}/> 
       {
         location.pathname !== '/login' && location.pathname !=='/signup' && location.pathname !=='/forgot-password' && location.pathname !=='/search' && <Footer />
       }

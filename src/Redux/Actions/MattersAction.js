@@ -13,3 +13,18 @@ export const loadMattersError = (error) => ({
     type: types.LOAD_MATTERS_ERROR,
     payload: error
 })
+
+export const getSingleMettersStart = (metterData) => ({
+    type: types.GET_SINGLE_METTERS_START,
+    payload: metterData
+})
+
+export const getSingleMettersSuccess = (metterData) => ({
+    type: types.GET_SINGLE_METTERS_SUCCESS,
+    payload: metterData
+})
+
+export const getSingleMettersError = (error) => ({
+    type: types.GET_SINGLE_METTERS_ERROR,
+    payload: error
+})

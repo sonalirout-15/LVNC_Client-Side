@@ -13,18 +13,20 @@ const LatestNewsData = () => {
     },[])
 
     return (
-        <div className="col-lg-12 stretch-card grid-margin" >
+        <div className="col-lg-5 stretch-card grid-margin">
         <div className="card">
           <div className="card-body">
               <div className="row">
+              <div class="fs-13 mb-2">
+                <span class="mr-2">Photo </span>{latestNewsData?.updatedAt}
+            </div>
               <h4 className="mb-2 font-weight-600">
                    {latestNewsData?.title}
-                  </h4>
-                <div className="col-sm-7 grid-margin">
+                </h4>
+                <div className="col-sm-12 grid-margin">
                   <div className="position-relative">
                     <div className="rotate-img">
                       <img
-                        style={{'height' : '200px', width: '500px', alignItems:'center'}}
                         src={latestNewsData?.image}
                         alt="thumb"
                         className="img-fluid"
@@ -32,8 +34,8 @@ const LatestNewsData = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-sm-8  grid-margin">
-                  <div className="fs-13 mb-2">
+                <div className="col-sm-12  grid-margin">
+                  <div className="fs-12 mb-2">
                     <span className="mr-2"></span>
                   </div>
                   <p className="mb-0">

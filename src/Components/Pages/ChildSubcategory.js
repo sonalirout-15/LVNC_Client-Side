@@ -8,7 +8,7 @@ const ChildSubcategory = () => {
     const { id } = useParams();
 
     const singleChildSubcategory = useSelector((state) => state?.childSubcategory?.childSubcategoryData);
-    console.log('SINGLE-CHILDSUBCATEGORY~~~~~~~~~~~~~~~~~>>>>>', singleChildSubcategory)
+    // console.log('SINGLE-CHILDSUBCATEGORY~~~~~~~~~~~~~~~~~>>>>>', singleChildSubcategory)
 
     useEffect(() => {
         dispatch(getSingleChildSubcategoryStart(id))
@@ -19,15 +19,18 @@ const ChildSubcategory = () => {
         <div className="card">
           <div className="card-body">
               <div className="row">
+              <div class="fs-13 mb-2">
+                <span class="mr-2">Photo </span>{singleChildSubcategory[0]?.updated_at}
+            </div>
               <h4 className="mb-2 font-weight-600">
-                   {singleChildSubcategory?.title}
+                   {singleChildSubcategory[0]?.title}
                   </h4>.
                 <div className="col-sm-7 grid-margin">
                   <div className="position-relative">
                     <div className="rotate-img">
                       <img
                         style={{'height' : '200px', width: '500px', alignItems:'center'}}
-                        src={singleChildSubcategory?.image}
+                        src={singleChildSubcategory[0]?.image}
                         alt="thumb"
                         className="img-fluid"
                       />
@@ -39,7 +42,7 @@ const ChildSubcategory = () => {
                     <span className="mr-2"></span>
                   </div>
                   <p className="mb-0">
-                   {singleChildSubcategory?.Description}
+                   {singleChildSubcategory[0]?.Description}
                   </p>
                 </div>
               </div>
