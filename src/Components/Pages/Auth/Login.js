@@ -17,16 +17,18 @@ import { userLoginStart } from '../../../Redux/Actions/UserAction';
 
 const Login = () => {
     const dispatch = useDispatch();
-    const [emailError, setEmailErorr] = useState()
-    const [passwordError, setPasswordError] = useState();
     const user = useSelector((state) => state?.user?.userLogin?.status);
-    console.log('USER¬¬¬¬¬¬¬¬¬', user)
     const history = useHistory();
-
+    const [submit , setSubmit] = useState();
     const [data, setData] = useState({
-        email: '',
-        password: ''
+      email:'',
+      password:''
     })
+
+    const validateEmail = (email) => {
+        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return pattern.test(String(email).toLowerCase());
+    };
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -35,37 +37,24 @@ const Login = () => {
             [e.target.name]: value,
         })
     }
-    const validateEmail = (email) => {
-        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return pattern.test(String(email).toLowerCase())
-    }
-    const userData = {
-        email: data.email,
-        password: data.password
+  
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        setSubmit(true);
+        setData(data)
+        if(data.email !== '' && data.password !== '') {
+          var loginData = {
+            email: data.email,
+            password: data.password
+          }
+          dispatch(userLoginStart(loginData))
+        }  
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (data.email === '') {
-            setEmailErorr("Email is Required!")
-        } else if (!validateEmail(data.email)) {
-            setEmailErorr("Invalid Email! Please enter valid email")
-        } else {
-            setEmailErorr("")
-        }
-        if (data.password === "") {
-            setPasswordError("Password can be emapty!")
-        } else if (data.password.length < 3) {
-            setPasswordError('Password is small');
-        } else {
-            setPasswordError("")
-        }
-        dispatch(userLoginStart(data))
-    };
-
-    if (user === 200) {
-        history.push('/')
-    }
+    // if (user === 200) {
+    //     history.push('/')
+    // }
 
     return (
         <>
@@ -94,7 +83,7 @@ const Login = () => {
                                                     marginLeft: "10%",
                                                     display: "flex"
                                                 }}>
-                                                    {emailError}
+                                                   {submit && !data.email && <small className="p-invalid">Email required.</small> || submit && !validateEmail(data.email) && <small className="p-invalid">Please Enter Valid Email!</small>}
                                                 </label>
                                 <MDBInput 
                                     wrapperClass='mb-4 w-100' 
@@ -109,7 +98,7 @@ const Login = () => {
                                                     marginLeft: "5%",
                                                     display: "flex"
                                                 }}>
-                                                    {passwordError}
+                                    {submit && !data.password && <small className="p-invalid">Password required.</small>}
                                                 </label>
 
                                 {/* <MDBCheckbox name='flexCheck' id='flexCheckDefault' className='mb-4' label='Remember password' /> */}

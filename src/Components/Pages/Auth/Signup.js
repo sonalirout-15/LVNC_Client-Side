@@ -18,16 +18,10 @@ import { createUserStart } from "../../../Redux/Actions/UserAction";
 
 const Signup = () => {
   const dispatch = useDispatch();
-  const [usernameError, setUsernameErorr] = useState()
-  const [passwordError, setPasswordError] = useState();
-  const [emailError, setEmailErorr] = useState()
-  const [confirmPasswordError, setConfirmPasswordError] = useState();
-  const [mobileError, setmobileError] = useState();
-  const [addressError, setAddressError] = useState();
   const user = useSelector((state) => state);
   console.log('USER-REGISTRATION¬¬¬¬¬¬¬¬¬', user)
   const history = useHistory();
-
+  const [submit , setSubmit] = useState();
   const [data, setData] = useState({
     username: '',
     email: '',
@@ -36,59 +30,46 @@ const Signup = () => {
     mobile: '',
     address: '',
   })
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setData({
-      ...data,
-      [e.target.name]: value,
-    })
-  }
+
   const validateEmail = (email) => {
     const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return pattern.test(String(email).toLowerCase())
   }
-  const userData = {
-    username: data.username,
-    email: data.email,
-    password: data.password,
-    confirm_password: data.confirm_password,
-    mobile: data.mobile,
-    address: data.address
-  };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (data.username === '') {
-      setUsernameErorr('Username Required!')
-    }
-    if (data.email === '') {
-      setEmailErorr("Email Required!")
-    } else if (!validateEmail(data.email)) {
-      setEmailErorr("Invalid Email! Please enter valid email")
-    } else {
-      setEmailErorr("")
-    }
-    if (data.password === "") {
-      setPasswordError("Password can be emapty!")
-    } else if (data.password.length < 3) {
-      setPasswordError('Password is small');
-    } else {
-      setPasswordError("")
-    }
-    if (data.confirm_password === '') {
-      setConfirmPasswordError('Confirm Password Required!')
-    } else if (data.password !== data.confirm_password) {
-      setConfirmPasswordError('Password and Confirm Password does not match!')
-    }
-    if (data.mobile === '') {
-      setmobileError('Mobile No Required!')
-    }
-    if (data.address === '') {
-      setAddressError('Address Required')
-    }
-    dispatch(createUserStart(data))
-    // history.push('/')
-  };
+  const validatePassword = (password) => {
+    const re = /^(?=.*[a-z])(?!.* )(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/;
+    return re.test(String(password))
+  }
+
+  const validatePhoneNum = (mobile) => {
+    const reg = /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[6789]\d{9}$/;
+    return reg.test(mobile)
+  }
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setData({
+      ...data,
+      [e.target.name] : value,
+    })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setSubmit(true);
+    setData(data)
+    if(data.username !== '' && data.email !== '' && data.password !== '' && data.confirm_password !== '' && data.mobile !== '' && data.address !== '') {
+      var signupData = {
+        username: data.username,
+        email: data.email,
+        password: data.password,
+        confirm_password: data.confirm_password,
+        mobile: data.mobile,
+        address: data.address
+      }
+      dispatch(createUserStart(signupData))
+    }  
+};
 
   return (
     <>
@@ -118,7 +99,7 @@ const Signup = () => {
                     marginLeft: '10%',
                     display: "flex"
                   }}>
-                    {usernameError}
+                     {submit && !data.username && <small className="p-invalid">Username required.</small>}
                   </label>
                   <div className="d-flex flex-row align-items-center mb-4">
                     <MDBIcon fas icon="envelope me-3" size='lg' />
@@ -135,7 +116,7 @@ const Signup = () => {
                     marginLeft: "10%",
                     display: "flex"
                   }}>
-                    {emailError}
+                    {submit && !data.email && <small className="p-invalid">Email required.</small> || submit && !validateEmail(data.email) && <small className="p-invalid">Please Enter Valid Email!</small>}
                   </label>
 
                   <div className="d-flex flex-row align-items-center mb-4">
@@ -154,7 +135,7 @@ const Signup = () => {
                     marginLeft: '10%',
                     display: "flex"
                   }}>
-                    {passwordError}
+                   {submit && !data.password && <small className="p-invalid">Password required.</small> || submit && !validatePassword(data.password) && <small className="p-invalid">Please Enter Valid Password!</small>}
                   </label>
 
                   <div className="d-flex flex-row align-items-center mb-4">
@@ -173,7 +154,7 @@ const Signup = () => {
                     marginLeft: "10%",
                     display: "flex"
                   }}>
-                    {confirmPasswordError}
+                    {submit && !data.confirm_password && <small className="p-invalid">Confirm Password required.</small>}
                   </label>
 
                   <div className="d-flex flex-row align-items-center mb-4">
@@ -192,7 +173,7 @@ const Signup = () => {
                     marginLeft: "10%",
                     display: "flex"
                   }}>
-                    {mobileError}
+                   {submit && !data.mobile && <small className="p-invalid">Moible No required.</small> || submit && !validatePhoneNum(data.mobile) && <small className="p-invalid">Please Enter Valid Mobile No!</small>}
                   </label>
 
                   <div className="d-flex flex-row align-items-center mb-4">
@@ -210,7 +191,7 @@ const Signup = () => {
                     marginLeft: "10%",
                     display: "flex"
                   }}>
-                    {addressError}
+                    {submit && !data.address && <small className="p-invalid">Address required.</small>}
                   </label>
 
                   <div className='mb-4'>

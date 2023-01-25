@@ -40,7 +40,6 @@ const Toast = Swal.mixin({
 export function* onUserLoginStartAsync({ payload }) {
     try {
         const response = yield call(userLoginApi, payload);
-        console.log("PAYLOAD===", response)
         if (response.data.status === 200) {
             localStorage.setItem("USER", response.data.data.token);
             yield put(userLoginSuccess(response.data));
@@ -56,6 +55,10 @@ export function* onUserLoginStartAsync({ payload }) {
         }
     } catch (error) {
         yield put(userLoginError(error.response));
+        Toast.fire({
+            icon: "error",
+            title: error.response.data.message,
+        });
     }
 }
 
@@ -166,6 +169,43 @@ export function* onCreateUserStartAsync({ payload }) {
         }
     } catch (error) {
         yield put(createUserError(error.response))
+        if(error.response.data.errors.username) {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.username,
+            });
+        } else if (error.response.data.errors.email) {
+            console.log(error.response)
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.email,
+            });
+        } else if(error.response.data.errors.password) {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.password,
+            });
+        } else if(error.response.data.errors.confirm_password) {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.confirm_password,
+            });
+        } else if(error.response.data.errors.mobile) {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.mobile,
+            });
+        } else if(error.response.data.errors.address){
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.address,
+            });
+        } else {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.message,
+            });
+        }
     }
 }
 
