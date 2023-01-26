@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { getSingleCategoryStart } from "../../Redux/Actions/CategoryAction";
+import { getSingleSubcategoryStart } from "../../Redux/Actions/SubcategoryAction";
 
 
-const Subcategory = () => {
+const HeaderCategory = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const {category_name} = useParams();
-
     const singleCategoryName = useSelector((state) => state?.categoryData?.categoryData);
     const singleSubcategoryName = useSelector((state) => state?.categoryData?.categoryData[0]?.Subcategories);
   
@@ -210,4 +210,4 @@ const Subcategory = () => {
     )
 }
 
-export default Subcategory;
+export default HeaderCategory;

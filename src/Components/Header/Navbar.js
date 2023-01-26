@@ -49,12 +49,12 @@ const Navbar = () => {
                                     <li className="nav-item">
                                         <Link to="/event" className="nav-link">Events</Link>
                                     </li>
-                                    {/* <li className="nav-item">
-                                        <Link to="/" className="nav-link">Write for Us</Link>
+                                    <li className="nav-item">
+                                        <Link to="/write-for-us" className="nav-link">Write for Us</Link>
                                     </li>
                                     <li className="nav-item">
                                         <Link to="/" className="nav-link">In the Press</Link>
-                                    </li> */}
+                                    </li>
                                 </ul>
                                 <ul className="navbar-top-right-menu">
                                     <li className="nav-item">
@@ -97,17 +97,19 @@ const Navbar = () => {
                                             <li className="nav-item active">
                                                 <Link className="nav-link" to="/">Home</Link>
                                             </li>
-                                            {data && data.map((item) => (
+                                            {data && data.map((item) => {
+                                                return(
                                                 <li className="nav-item">
                                                     {item.header === 1 ? (
-                                                          <Link 
+                                                          <a 
                                                           className="nav-link"
-                                                          to={(`/./${(item.category_name).toLowerCase()}`)}>{item.category_name}
-                                                          </Link>
+                                                          onClick={() => history.push(`/./${(item.category_name).toLowerCase()}`)}>{item.category_name}
+                                                          </a>
                                                         ) : (null)
                                                     }
                                                 </li>
-                                            ))}
+                                                )
+                                            })}
                                             <li className="nav-item">
                                                 <Link className="nav-link" to="/contact">Contact</Link>
                                             </li>

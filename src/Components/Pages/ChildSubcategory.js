@@ -8,19 +8,18 @@ const ChildSubcategory = () => {
     const { id } = useParams();
 
     const singleChildSubcategory = useSelector((state) => state?.childSubcategory?.childSubcategoryData);
-    // console.log('SINGLE-CHILDSUBCATEGORY~~~~~~~~~~~~~~~~~>>>>>', singleChildSubcategory)
 
     useEffect(() => {
         dispatch(getSingleChildSubcategoryStart(id))
     },[])
     
     return(
-        <div className="col-lg-12 stretch-card grid-margin" >
+        <div className="col-lg-10 stretch-card grid-margin" style={{margin: '110px'}}>
         <div className="card">
           <div className="card-body">
               <div className="row">
-              <div class="fs-13 mb-2">
-                <span class="mr-2">Photo </span>{singleChildSubcategory[0]?.updated_at}
+              <div className="fs-13 mb-2">
+                <span className="mr-2">Photo </span>{singleChildSubcategory[0]?.updated_at}
             </div>
               <h4 className="mb-2 font-weight-600">
                    {singleChildSubcategory[0]?.title}
@@ -44,7 +43,32 @@ const ChildSubcategory = () => {
                   <p className="mb-0">
                    {singleChildSubcategory[0]?.Description}
                   </p>
-                </div>
+                 </div>
+                 <div className="post-comment-section">
+                        <h3 className="font-weight-600">Related Posts</h3>
+                        <div className="row">
+                          <div className="col-sm-12">
+                            <div className="post-author">
+                              <div className="rotate-img">
+                                <img
+                                  src="../assets/images/inner/inner_5.jpg"
+                                  alt="banner"
+                                  className="img-fluid"
+                                />
+                              </div>
+                              <div className="post-author-content">
+                                <h5 className="mb-1">
+                                  Virus Kills Member Of Council Advising Iran’s
+                                  Supreme Leader
+                                </h5>
+                                <p className="fs-13 text-muted mb-0">
+                                  <span className="mr-2">Photo </span>10 Minutes ago
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>      
+                 </div>
               </div>
           </div>
         </div>

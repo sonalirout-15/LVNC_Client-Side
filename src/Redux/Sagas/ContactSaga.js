@@ -33,6 +33,10 @@ export function* onCreateContactUsStartAsync({ payload }) {
         }
     } catch (error) {
         yield put(contactUsError(error.response.data))
+        Toast.fire({
+            icon: "error",
+            title: error.response.data.errors,
+        });
     }
 }
 

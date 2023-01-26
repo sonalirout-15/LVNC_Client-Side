@@ -9,15 +9,13 @@ const Videos = () => {
     const {id} = useParams();
 
     const mattersData = useSelector((state) => state?.matters?.metterData);
-    console.log('MATTERS-DATA~~~~~~~~~~~>>>>', mattersData)
 
     useEffect(() => {
         dispatch(getSingleMettersStart(id))
     },[])
 
-
-    return(
-        <div className="col-lg-5 stretch-card grid-margin">
+return(
+        <div className="col-lg-10 stretch-card grid-margin" style={{margin: '110px'}}>
         <div className="card">
           <div className="card-body">
               <div className="row">

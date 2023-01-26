@@ -1,11 +1,13 @@
 import './App.css';
 import { Route, useLocation } from 'react-router-dom';
+import Home from './Components/Pages/Home';
 import Login from './Components/Pages/Auth/Login';
 import Signup from './Components/Pages/Auth/Signup';
 import ForgotPassword from './Components/Pages/Auth/ForgotPassword';
 import Videos from './Components/Pages/Videos';
 import Advertise from './Components/Header/Advertise';
 import AboutUs from './Components/Header/AboutUs';
+import WriteForUs from './Components/Header/WriteForUs';
 import Event from './Components/Header/Event';
 import Contact from './Components/Pages/Contact';
 import Navbar from './Components/Header/Navbar';
@@ -18,10 +20,9 @@ import Subcategory from './Components/Pages/Subcategory';
 import SubcategoryData from './Components/Pages/SubcategoryData';
 import ChildSubcategory from './Components/Pages/ChildSubcategory';
 import MattersData from './Components/Pages/MattersData';
-import Home from './Components/Pages/Home';
 
 function App() {
-  let location = useLocation()
+  let location = useLocation();
 
   return (
     <div className="App">
@@ -38,11 +39,12 @@ function App() {
       <Route path='/signup' component={Signup}/>
       <Route path='/videos/:id' component={Videos}/>
       <Route path='/advertise' component={Advertise} />
+      <Route path='/write-for-us' component={WriteForUs}/>
       <Route path='/about' component={AboutUs} />
       <Route path='/event' component={Event} />
       <Route path='/latestNews/:id' component={LatestNewsData}/>
-      <Route path='/latestVideo/:id' component={LatestVideo} /> 
-      <Route exact path='/./:category_name' component={Subcategory}/>
+      <Route path='/latestVideo/:id' component={LatestVideo} />
+      <Route path='/./:category_name' component={Subcategory}/>
       <Route path='/subcategoryData/:id' component={SubcategoryData}/>
       <Route path='/childSubcategory/:id' component={ChildSubcategory}/>
       <Route path='/matters/:id' component={MattersData}/>

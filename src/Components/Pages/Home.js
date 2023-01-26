@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { MDBSpinner } from 'mdb-react-ui-kit';
 import { useDispatch, useSelector } from "react-redux";
 import {  useHistory } from "react-router-dom";
 import {loadCategoryStart } from '../../Redux/Actions/CategoryAction';
@@ -8,7 +9,15 @@ import { loadMattersStart } from "../../Redux/Actions/MattersAction";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
 
   useEffect(() => {
     dispatch(loadBannerImageStart())
@@ -44,7 +53,7 @@ const Home = () => {
 
   useEffect(() => {
     setBannnerData(bannerImageData)
-  }, [categories])
+  }, [bannerImageData])
 
 
   useEffect(() => {
@@ -78,7 +87,18 @@ const Home = () => {
   }, [latestNewsData])
 
   return (
+    <>
+    {loading ? (
+      <>
+              {/* <MDBSpinner className='me-2' style={{ width: '5rem', height: '5rem' , color:'#032a63'}}>
+               <span className='visually-hidden'>Loading...</span>
+              </MDBSpinner> */}
 
+            <MDBSpinner grow style={{ width: '5rem', height: '5rem' , color:'#032a63'}}>
+              <span className='visually-hidden'>Loading...</span>
+            </MDBSpinner>
+     </>
+    ) : (
     <div className="container-scroller">
       <div className="main-panel">
         <div className="container-scroller">
@@ -514,6 +534,8 @@ const Home = () => {
         </div>
       </div>
     </div>
+    )}
+    </>
   )
 }
 export default Home;

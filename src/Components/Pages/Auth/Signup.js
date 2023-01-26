@@ -9,9 +9,7 @@ import {
   MDBCardImage,
   MDBInput,
   MDBIcon,
-  MDBCheckbox
-}
-  from 'mdb-react-ui-kit';
+} from 'mdb-react-ui-kit';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createUserStart } from "../../../Redux/Actions/UserAction";
@@ -19,9 +17,9 @@ import { createUserStart } from "../../../Redux/Actions/UserAction";
 const Signup = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state);
-  console.log('USER-REGISTRATION¬¬¬¬¬¬¬¬¬', user)
+  // console.log('USER-REGISTRATION¬¬¬¬¬¬¬¬¬', user)
   const history = useHistory();
-  const [submit , setSubmit] = useState();
+  const [submit, setSubmit] = useState();
   const [data, setData] = useState({
     username: '',
     email: '',
@@ -50,7 +48,7 @@ const Signup = () => {
     const value = e.target.value;
     setData({
       ...data,
-      [e.target.name] : value,
+      [e.target.name]: value,
     })
   }
 
@@ -58,7 +56,7 @@ const Signup = () => {
     e.preventDefault()
     setSubmit(true);
     setData(data)
-    if(data.username !== '' && data.email !== '' && data.password !== '' && data.confirm_password !== '' && data.mobile !== '' && data.address !== '') {
+    if (data.username !== '' && data.email !== '' && data.password !== '' && data.confirm_password !== '' && data.mobile !== '' && data.address !== '') {
       var signupData = {
         username: data.username,
         email: data.email,
@@ -68,8 +66,8 @@ const Signup = () => {
         address: data.address
       }
       dispatch(createUserStart(signupData))
-    }  
-};
+    }
+  };
 
   return (
     <>
@@ -96,10 +94,10 @@ const Signup = () => {
                   </div>
                   <label style={{
                     color: "red",
-                    marginLeft: '10%',
+                    marginLeft: '3%',
                     display: "flex"
                   }}>
-                     {submit && !data.username && <small className="p-invalid">Username required.</small>}
+                    {submit && !data.username && <p>Username required.</p>}
                   </label>
                   <div className="d-flex flex-row align-items-center mb-4">
                     <MDBIcon fas icon="envelope me-3" size='lg' />
@@ -113,10 +111,10 @@ const Signup = () => {
                   </div>
                   <label style={{
                     color: "red",
-                    marginLeft: "10%",
+                    marginLeft: "3%",
                     display: "flex"
                   }}>
-                    {submit && !data.email && <small className="p-invalid">Email required.</small> || submit && !validateEmail(data.email) && <small className="p-invalid">Please Enter Valid Email!</small>}
+                    {submit && !data.email && <p>Email required.</p> || submit && !validateEmail(data.email) && <p>Please Enter Valid Email!</p>}
                   </label>
 
                   <div className="d-flex flex-row align-items-center mb-4">
@@ -132,10 +130,10 @@ const Signup = () => {
                   </div>
                   <label style={{
                     color: "red",
-                    marginLeft: '10%',
+                    marginLeft: '3%',
                     display: "flex"
                   }}>
-                   {submit && !data.password && <small className="p-invalid">Password required.</small> || submit && !validatePassword(data.password) && <small className="p-invalid">Please Enter Valid Password!</small>}
+                    {submit && !data.password && <p>Password required.</p> || submit && !validatePassword(data.password) && <p>Please Enter Valid Password!</p>}
                   </label>
 
                   <div className="d-flex flex-row align-items-center mb-4">
@@ -151,10 +149,10 @@ const Signup = () => {
                   </div>
                   <label style={{
                     color: "red",
-                    marginLeft: "10%",
+                    marginLeft: "3%",
                     display: "flex"
                   }}>
-                    {submit && !data.confirm_password && <small className="p-invalid">Confirm Password required.</small>}
+                    {submit && !data.confirm_password && <p>Confirm Password required.</p>}
                   </label>
 
                   <div className="d-flex flex-row align-items-center mb-4">
@@ -170,10 +168,10 @@ const Signup = () => {
                   </div>
                   <label style={{
                     color: "red",
-                    marginLeft: "10%",
+                    marginLeft: "3%",
                     display: "flex"
                   }}>
-                   {submit && !data.mobile && <small className="p-invalid">Moible No required.</small> || submit && !validatePhoneNum(data.mobile) && <small className="p-invalid">Please Enter Valid Mobile No!</small>}
+                    {submit && !data.mobile && <p>Moible No required.</p> || submit && !validatePhoneNum(data.mobile) && <p>Please Enter Valid Mobile No!</p>}
                   </label>
 
                   <div className="d-flex flex-row align-items-center mb-4">
@@ -188,18 +186,18 @@ const Signup = () => {
                   </div>
                   <label style={{
                     color: "red",
-                    marginLeft: "10%",
+                    marginLeft: "3%",
                     display: "flex"
                   }}>
-                    {submit && !data.address && <small className="p-invalid">Address required.</small>}
+                    {submit && !data.address && <p>Address required.</p>}
                   </label>
 
                   <div className='mb-4'>
-                    {/* <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Subscribe to our newsletter' /> */}
+
                   </div>
 
                   <MDBBtn className='mb-4' size='lg' type="submit" onClick={handleSubmit}>Register</MDBBtn>
-
+                  <p className="text-center">Have already an account? <a href="/login">Login here</a></p>
                 </MDBCol>
 
                 <MDBCol md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
@@ -211,164 +209,7 @@ const Signup = () => {
           </MDBCard>
         </center>
       </MDBContainer>
-      {/* <div id="app">
-        <section className="section">
-          <div className="container mt-5">
-            <div className="row">
-              <div className="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
-                <div className="login-brand">
-                  <img
-                    src="../assets/img/stisla-fill.svg"
-                    alt="logo"
-                    width="100"
-                    className="shadow-light rounded-circle"
-                  />
-                </div>
-
-                <div className="card card-primary">
-                  <div className="card-header">
-                    <h4>Signup</h4>
-                  </div>
-
-                  <div className="card-body">
-                    <form onSubmit={handleSubmit}>
-                      <div className="form-group">
-                        <label htmlFor="username">User Name</label>
-                        <input
-                          id="username"
-                          type="text"
-                          className="form-control"
-                          name="username"
-                          value={data.username}
-                          onChange={handleChange}
-                          autoFocus
-                        />
-                        <label style={{
-                          color: "red",
-                          marginLeft: '40%',
-                          display: "flex"
-                        }}>
-                          {usernameError}
-                        </label>
-                      </div>
-                      <div className="form-group">
-                        <label htmlFor="email">Email</label>
-                        <input
-                          id="email"
-                          type="email"
-                          className="form-control"
-                          name="email"
-                          value={data.email}
-                          onChange={handleChange}
-                        />
-                        <label style={{
-                          color: "red",
-                          marginLeft: "40%",
-                          display: "flex"
-                        }}>
-                          {emailError}
-                        </label>
-                        <div className="invalid-feedback"></div>
-                      </div>
-                      <div className="row">
-                        <div className="form-group col-6">
-                          <label htmlFor="password" className="d-block">
-                            Password
-                          </label>
-                          <input
-                            id="password"
-                            type="password"
-                            className="form-control pwstrength"
-                            data-indicator="pwindicator"
-                            name="password"
-                            value={data.password}
-                            onChange={handleChange}
-                          />
-                          <label style={{
-                            color: "red",
-                            marginLeft: '40%',
-                            display: "flex"
-                          }}>
-                            {passwordError}
-                          </label>
-                        </div>
-                        <div className="form-group col-6">
-                          <label htmlFor="password2" className="d-block">
-                            Password Confirmation
-                          </label>
-                          <input
-                            id="confirm_password"
-                            type="password"
-                            className="form-control pwstrength"
-                            data-indicator="pwindicator"
-                            name="confirm_password"
-                            value={data.confirm_password}
-                            onChange={handleChange}
-                          />
-                          <label style={{
-                            color: "red",
-                            marginLeft: "40%",
-                            display: "flex"
-                          }}>
-                            {confirmPasswordError}
-                          </label>
-                        </div>
-                      </div>
-                      <div className="form-group">
-                        <label htmlFor="email">Contact</label>
-                        <input
-                          id="mobile"
-                          type="mobile"
-                          className="form-control"
-                          name="mobile"
-                          value={data.mobile}
-                          onChange={handleChange}
-                        />
-                        <label style={{
-                          color: "red",
-                          marginLeft: "40%",
-                          display: "flex"
-                        }}>
-                          {mobileError}
-                        </label>
-                        <div className="invalid-feedback"></div>
-                      </div>
-                      <div className="form-group">
-                        <label htmlFor="address">Address</label>
-                        <input
-                          id="address"
-                          type="text"
-                          className="form-control"
-                          name="address"
-                          value={data.address}
-                          onChange={handleChange}
-                        />
-                        <label style={{
-                          color: "red",
-                          marginLeft: "40%",
-                          display: "flex"
-                        }}>
-                          {addressError}
-                        </label>
-                        <div className="invalid-feedback"></div>
-                      </div>
-                      <div className="form-group">
-                        <button
-                          type="submit"
-                          className="btn btn-primary btn-lg btn-block"
-                        >
-                          Signup
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-                <div className="simple-footer">Copyright &copy; LVNC 2022</div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div> */}
+     
     </>
   )
 }
