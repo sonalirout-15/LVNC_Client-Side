@@ -177,7 +177,7 @@ const Subcategory = () => {
           </div>
         </div> */}
           {singleSubcategoryName && singleSubcategoryName.map((items) => (
-            <div classNameName="container-scroller">
+            <div className="container-scroller">
               <div className="main-panel">
                     <div className="childSubcategory">
                         <div className="container">
@@ -193,7 +193,6 @@ const Subcategory = () => {
                 </div>
               <div className="row row-cols-6 g-8" style={{ marginTop : '10px',marginLeft:'9px'}}>
               {items?.Childcategories?.map((data) => (
-                // console.log('DATA~~~~~~~~~~>>>', data.id)
                 <div className="col">
                   <div className="cards" onClick={() => history.push(`childSubcategory/${data.id}`)}>
                     <img src={data.image} className="card-img-top" alt="image" />

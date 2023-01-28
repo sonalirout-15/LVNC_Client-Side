@@ -53,7 +53,7 @@ const Navbar = () => {
                                         <Link to="/write-for-us" className="nav-link">Write for Us</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link to="/" className="nav-link">In the Press</Link>
+                                        <Link to="/in-the-press" className="nav-link">In the Press</Link>
                                     </li>
                                 </ul>
                                 <ul className="navbar-top-right-menu">
@@ -101,10 +101,10 @@ const Navbar = () => {
                                                 return(
                                                 <li className="nav-item">
                                                     {item.header === 1 ? (
-                                                          <a 
+                                                          <Link 
                                                           className="nav-link"
-                                                          onClick={() => history.push(`/./${(item.category_name).toLowerCase()}`)}>{item.category_name}
-                                                          </a>
+                                                          to={`/./${(item.category_name).toLowerCase()}`}>{item.category_name}
+                                                          </Link>
                                                         ) : (null)
                                                     }
                                                 </li>

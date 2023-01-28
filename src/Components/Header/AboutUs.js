@@ -19,7 +19,7 @@ const AboutUs = () => {
                         alt="banner"
                         className="img-fluid mb-5"
                       />
-                      <p className="font-weight-600 fs-15 " style={{ justifyContent: 'center'}}>
+                      <p className="font-weight-600 fs-15 ">
                       The rise of LVNC as Lok Vishwas News leading news channel within a short span of its existence owes a lot to the vision of its chairman and editor-in-chief Chandrakant Kshirsagar and the dedication and toil of its ever-growing team of bright news channel professionals.
 
                     Chandrakant Kshirsagar co-founded India TV  in April, 2020 from a Gujrat , Surat.

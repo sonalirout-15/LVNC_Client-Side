@@ -1,5 +1,6 @@
 import './App.css';
-import { Route, useLocation } from 'react-router-dom';
+import { Route, Switch, useLocation } from 'react-router-dom';
+import { MDBSpinner } from 'mdb-react-ui-kit';
 import Home from './Components/Pages/Home';
 import Login from './Components/Pages/Auth/Login';
 import Signup from './Components/Pages/Auth/Signup';
@@ -20,39 +21,92 @@ import Subcategory from './Components/Pages/Subcategory';
 import SubcategoryData from './Components/Pages/SubcategoryData';
 import ChildSubcategory from './Components/Pages/ChildSubcategory';
 import MattersData from './Components/Pages/MattersData';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 function App() {
   let location = useLocation();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
 
   return (
     <div className="App">
+      {loading ? (
+              <MDBSpinner grow style={{ width: '10rem', height: '10rem' , color:'#032a63', alignItems:'center'}}>
+                  <span className='visually-hidden'>Loading...</span>
+              </MDBSpinner>
+      ) : (
+        <>
       {
         location.pathname !== '/login' &&  location.pathname !=='/signup' && location.pathname !=='/forgot-password'  && <Navbar />
       }
       {
         location.pathname !== '/login' && location.pathname !=='/signup' && location.pathname !=='/forgot-password' && <Header />
       }
-      
-      <Route exact  path='/' component={Home} />
-      <Route path='/login' component={Login} />
-      <Route path='/forgot-password' component={ForgotPassword} />
-      <Route path='/signup' component={Signup}/>
-      <Route path='/videos/:id' component={Videos}/>
-      <Route path='/advertise' component={Advertise} />
-      <Route path='/write-for-us' component={WriteForUs}/>
-      <Route path='/about' component={AboutUs} />
-      <Route path='/event' component={Event} />
-      <Route path='/latestNews/:id' component={LatestNewsData}/>
-      <Route path='/latestVideo/:id' component={LatestVideo} />
-      <Route path='/./:category_name' component={Subcategory}/>
-      <Route path='/subcategoryData/:id' component={SubcategoryData}/>
-      <Route path='/childSubcategory/:id' component={ChildSubcategory}/>
-      <Route path='/matters/:id' component={MattersData}/>
-      <Route path='/contact' component={Contact} />
-      <Route path='/search' component={Search}/> 
+      <Switch>
+      <Route exact  path='/'>
+        <Home />
+      </Route>
+      <Route path='/login'>
+        <Login />
+      </Route>
+      <Route path='/forgot-password'>
+        <ForgotPassword />
+      </Route>
+      <Route path='/signup'>
+        <Signup />
+      </Route>
+      <Route path='/videos/:id'>
+        <Videos />
+      </Route>
+      <Route path='/advertise'>
+        <Advertise />
+      </Route>
+      <Route path='/write-for-us'>
+        <WriteForUs />
+      </Route>
+      <Route path='/about'>
+        <AboutUs />
+      </Route>
+      <Route path='/event'>
+        <Event />
+      </Route>
+      <Route path='/latestNews/:id'>
+        <LatestNewsData/>
+      </Route>
+      <Route path='/latestVideo/:id'>
+        <LatestVideo />
+      </Route>
+      <Route path='/./:category_name'>
+        <Subcategory />
+      </Route>
+      <Route path='/subcategoryData/:id'>
+        <SubcategoryData />
+      </Route>
+      <Route path='/childSubcategory/:id'>
+        <ChildSubcategory />
+      </Route>
+      <Route path='/matters/:id'>
+        <MattersData />
+      </Route>
+      <Route path='/contact'>
+        <Contact />
+      </Route>
+      <Route path='/search'>
+        <Search />  
+      </Route> 
+      </Switch>
       {
         location.pathname !== '/login' && location.pathname !=='/signup' && location.pathname !=='/forgot-password' && location.pathname !=='/search' && <Footer />
       }
+        </>
+      )}
 
     </div>
   );

@@ -30,28 +30,33 @@ const WriteForUs = () => {
                       content better how it’s submitted to us.
                       </p>
                       <p>
-                      Approval Process When You Write For Us:
-We strictly don’t encourage contents that are Plagiarized.
-Content that you write for should be written well, it might get disapproved when the reading quality of the content is below-par.
-The content should be minimum of 500 Words to maximum of your wish, with proper sub-headings if required.
-Guest Post will be approved after verifying the relevance of title and the content which matches our website niche.
-If the title is irrelevant, then you can request the topics for which you can write for us and send over.
-Images you attach with the article should have included with credits/source if it’s not your own.
- If there’s a tweak/modification required on the content you share, then our content review team will do the appropriate changes for better of your content and our website quality.
+                       <h2>Approval Process When You Write For Us:</h2>
+
+                          We strictly don’t encourage contents that are Plagiarized.
+                          Content that you write for should be written well, it might get disapproved when the reading quality of the content is below-par.
+                          The content should be minimum of 500 Words to maximum of your wish, with proper sub-headings if required.`
+                          Guest Post will be approved after verifying the relevance of title and the content which matches our website niche.
+                          If the title is irrelevant, then you can request the topics for which you can write for us and send over.
+                          Images you attach with the article should have included with credits/source if it’s not your own.
+                          If there’s a tweak/modification required on the content you share, then our content review team will do the 
+                          appropriate changes for better of your content and our website quality.
 
                       </p>
                       <p>
-                      How to Submit Your Article?
-You can write for us on Latest Cricket News. The Guest Post will be review with respect to the above terms mentioned. The review process might take from minimum of few hours to maximum of 24 hours. Responses will be highly on working day., official holidays and weekends are exceptions.
+                      <h2>How to Submit Your Article?</h2>
+                        You can write for us on Latest Cricket News. The Guest Post will be review with respect to the 
+                        above terms mentioned. The review process might take from minimum of few hours to maximum of 24 hours. 
+                        Responses will be highly on working day., official holidays and weekends are exceptions.
                       </p>
                       <p>
-                      Things You can Keep in Mind for Good Content?
+                      <h2>Things You can Keep in Mind for Good Content?</h2>
 
-You have to understand the Industry in which you’re going to write content. A good industry experience will provide great choice of technical words.
-If you’re not the writer, then hire someone with good writing experience on the niche you would like to publish the content. You can share the industry experience to the writer for better quality of content.
-It’s very important to know what’s the happening topic in the sports industry. So, writing a relevant content to audience expectation will engage them more on your content.
-When you write for us or for your own, start the content with a bang, so the reader will dwell into your article immediately.
-If you’re not sure of the right keyword to choose, then you can choose an attractive title that’s explains something. This type of title can start with a how/why/when/where/who words.
+                          You have to understand the Industry in which you’re going to write content. 
+                          A good industry experience will provide great choice of technical words.
+                          If you’re not the writer, then hire someone with good writing experience on the 
+                          niche you would like to publish the content. You can share the industry experience 
+                          to the writer for better quality of content.
+
                       </p>
                     </div>
                   </div>

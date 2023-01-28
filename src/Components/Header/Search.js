@@ -28,7 +28,7 @@ const Search = () => {
                 <MDBInput label='Search here' style={{ width:'200%' , height:'40px'}} onChange={(event) => dispatch(categorySearch(event.target.value))}/>
                 {/* {searchData.length > 0 && (
 
-                )} */}
+                )} */}  
                 <MDBBtn rippleColor='dark' type='submit'> Search
                 </MDBBtn>
             </MDBInputGroup>
