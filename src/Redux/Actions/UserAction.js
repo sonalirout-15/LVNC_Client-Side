@@ -1,13 +1,13 @@
 import * as types from '../ActionTypes/UserActionType';
 
-export const userLoginStart = (user) => ({
+export const userLoginStart = (userLogin) => ({
     type: types.USER_LOGIN_START,
-    payload: user,
+    payload: userLogin,
 });
 
-export const userLoginSuccess = (user) => ({
+export const userLoginSuccess = (userLogin) => ({
     type: types.USER_LOGIN_SUCCESS,
-    payload: user
+    payload: userLogin
 });
 
 export const userLoginError = (error) => ({
@@ -69,8 +69,9 @@ export const createUserStart = (user) => ({
     payload: user
 })
 
-export const createUserSuccess = () => ({
+export const createUserSuccess = (user) => ({
     type: types.CREATE_USER_SUCCESS,
+    payload: user
 })
 
 export const createUserError = (error) => ({

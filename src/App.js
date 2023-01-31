@@ -5,6 +5,8 @@ import Home from './Components/Pages/Home';
 import Login from './Components/Pages/Auth/Login';
 import Signup from './Components/Pages/Auth/Signup';
 import ForgotPassword from './Components/Pages/Auth/ForgotPassword';
+import ChangePassword from './Components/Pages/Auth/ChangePassword';
+import ResetPassword from './Components/Pages/Auth/ResetPassword';
 import Videos from './Components/Pages/Videos';
 import Advertise from './Components/Header/Advertise';
 import AboutUs from './Components/Header/AboutUs';
@@ -44,13 +46,13 @@ function App() {
       ) : (
         <>
       {
-        location.pathname !== '/login' &&  location.pathname !=='/signup' && location.pathname !=='/forgot-password'  && <Navbar />
+        location.pathname !== '/login' &&  location.pathname !=='/signup' && location.pathname !=='/forgot-password'  && location.pathname !== '/change-password' && location.pathname !== '/reset-password' && <Navbar />
       }
       {
-        location.pathname !== '/login' && location.pathname !=='/signup' && location.pathname !=='/forgot-password' && <Header />
+        location.pathname !== '/login' && location.pathname !=='/signup' && location.pathname !=='/forgot-password' && location.pathname !== '/change-password' && location.pathname !== '/reset-password' && <Header />
       }
       <Switch>
-      <Route exact  path='/'>
+      <Route exact path='/'>
         <Home />
       </Route>
       <Route path='/login'>
@@ -58,6 +60,12 @@ function App() {
       </Route>
       <Route path='/forgot-password'>
         <ForgotPassword />
+      </Route>
+      <Route path='/change-password'>
+        <ChangePassword />
+      </Route>
+      <Route path='/reset-password'>
+        <ResetPassword />
       </Route>
       <Route path='/signup'>
         <Signup />
@@ -103,7 +111,7 @@ function App() {
       </Route> 
       </Switch>
       {
-        location.pathname !== '/login' && location.pathname !=='/signup' && location.pathname !=='/forgot-password' && location.pathname !=='/search' && <Footer />
+        location.pathname !== '/login' && location.pathname !=='/signup' && location.pathname !=='/forgot-password' && location.pathname !== '/change-password' && location.pathname !== '/reset-password' && location.pathname !=='/search' && <Footer />
       }
         </>
       )}

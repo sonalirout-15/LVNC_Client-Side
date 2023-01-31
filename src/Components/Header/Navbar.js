@@ -1,4 +1,10 @@
 import React, { useEffect, useState } from "react";
+import {
+    MDBDropdown,
+    MDBDropdownToggle,
+    MDBDropdownMenu,
+    MDBDropdownItem
+  } from "mdbreact";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory  } from "react-router-dom";
 import {  loadCategoryStart } from "../../Redux/Actions/CategoryAction";
@@ -6,6 +12,13 @@ import {  loadCategoryStart } from "../../Redux/Actions/CategoryAction";
 const Navbar = () => {
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        localStorage.removeItem("USER");
+        history.push("/");
+        window.location.reload()
+      };
 
     useEffect(() => {
         dispatch(loadCategoryStart())
@@ -31,7 +44,6 @@ const Navbar = () => {
     // console.log('SINGLE-CATEGORY~~~~~~~~~~ >>>>', singleCategory)
     
     return (
-        <>
             <header id="header">
                 <div className="container">
                     <nav className="navbar navbar-expand-lg navbar-light">
@@ -60,12 +72,35 @@ const Navbar = () => {
                                     <li className="nav-item">
                                         <Link to='/search' className="nav-link"><i className="mdi mdi-magnify"></i></Link>
                                     </li>
-                                    <li className="nav-item">
-                                        <Link to="/login" className="nav-link">Login</Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link to="/signup" className="nav-link">Signup</Link>
-                                    </li>
+                                    {
+                                        localStorage.getItem("USER") ? (
+                                            <MDBDropdown>
+                                            <MDBDropdownToggle nav caret>
+                                              <img
+                                                style={{ height: '30px', width: '30px' }}
+                                                alt="image"
+                                                src="assets/images/avtar/userImg.png"
+                                                className="rounded-circle mr-1"
+                                              />
+                                            </MDBDropdownToggle>
+                                            <MDBDropdownMenu >
+                                              <MDBDropdownItem onClick={() => history.push("/change-password")}>Change Password</MDBDropdownItem>
+                                              <MDBDropdownItem onClick={() => history.push("/reset-password")}>Reset Password</MDBDropdownItem>
+                                              <MDBDropdownItem onClick={handleClick}>Logout</MDBDropdownItem>
+                                            </MDBDropdownMenu>
+                                          </MDBDropdown>
+
+                                        ) : (
+                                            <>             
+                                            <li className="nav-item">
+                                                <Link to="/login" className="nav-link">Login</Link>
+                                            </li>
+                                            <li className="nav-item">
+                                                <Link to="/signup" className="nav-link">Signup</Link>
+                                            </li>
+                                        </>
+                                        )
+                                    }
                                 </ul>
                             </div>
                         </div>
@@ -100,6 +135,7 @@ const Navbar = () => {
                                             {data && data.map((item) => {
                                                 return(
                                                 <li className="nav-item">
+
                                                     {item.header === 1 ? (
                                                           <Link 
                                                           className="nav-link"
@@ -110,7 +146,7 @@ const Navbar = () => {
                                                 </li>
                                                 )
                                             })}
-                                            <li className="nav-item">
+                                            <li className="nav-item active">
                                                 <Link className="nav-link" to="/contact">Contact</Link>
                                             </li>
                                         </ul>
@@ -138,7 +174,6 @@ const Navbar = () => {
                     </nav>
                 </div>
             </header>
-        </>
     )
 }
 

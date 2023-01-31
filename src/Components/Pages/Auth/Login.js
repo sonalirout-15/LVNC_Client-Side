@@ -49,11 +49,12 @@ const Login = () => {
     };
 
     if (user === 200) {
-        history.push('/')
+        history.push('/');
+        // window.location.reload()
     }
 
     return (
-        <>
+        <div className='login-container' >
             <MDBContainer fluid>
 
                 <MDBRow className='d-flex justify-content-center align-items-center h-100'>
@@ -117,7 +118,7 @@ const Login = () => {
                     Copyright &copy; LVNC 2022
                 </div>
             </MDBContainer>
-        </>
+        </div>
     )
 }
 

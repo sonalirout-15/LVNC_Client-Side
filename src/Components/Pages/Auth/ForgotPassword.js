@@ -47,7 +47,6 @@ const handleSubmit = (e) => {
 
 
     return (
-        <>
             <MDBContainer fluid>
                 <MDBRow className='d-flex justify-content-center align-items-center h-100'>
                     <MDBCol col='12'>
@@ -87,7 +86,6 @@ const handleSubmit = (e) => {
                   Copyright &copy; LVNC 2022
                 </div>
             </MDBContainer>
-        </>
     )
 }
 

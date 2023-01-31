@@ -15,7 +15,7 @@ const Subcategory = () => {
 
     useEffect(() => {
         dispatch(getSingleCategoryStart(category_name))
-    },[])
+    },[category_name])
 
 
     // const handleClickSubcategory = (item) => {

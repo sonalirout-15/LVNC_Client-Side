@@ -16,8 +16,7 @@ import { createUserStart } from "../../../Redux/Actions/UserAction";
 
 const Signup = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state);
-  // console.log('USER-REGISTRATION¬¬¬¬¬¬¬¬¬', user)
+  const user = useSelector((state) => state?.user?.user);
   const history = useHistory();
   const [submit, setSubmit] = useState();
   const [data, setData] = useState({
@@ -25,7 +24,7 @@ const Signup = () => {
     email: '',
     password: '',
     confirm_password: '',
-    mobile: '',
+    phonenumber: '',
     address: '',
   })
 
@@ -39,9 +38,9 @@ const Signup = () => {
     return re.test(String(password))
   }
 
-  const validatePhoneNum = (mobile) => {
+  const validatePhoneNum = (phonenumber) => {
     const reg = /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[6789]\d{9}$/;
-    return reg.test(mobile)
+    return reg.test(phonenumber)
   }
 
   const handleChange = (e) => {
@@ -56,23 +55,26 @@ const Signup = () => {
     e.preventDefault()
     setSubmit(true);
     setData(data)
-    if (data.username !== '' && data.email !== '' && data.password !== '' && data.confirm_password !== '' && data.mobile !== '' && data.address !== '') {
+    if (data.username !== '' && data.email !== '' && data.password !== '' && data.confirm_password !== '' && data.phonenumber !== '' && data.address !== '') {
       var signupData = {
         username: data.username,
         email: data.email,
         password: data.password,
         confirm_password: data.confirm_password,
-        mobile: data.mobile,
+        phonenumber: data.phonenumber,
         address: data.address
       }
       dispatch(createUserStart(signupData))
     }
   };
 
+  if(user?.message === 'User created successfully'){
+    history.push('/login')
+  }
+
   return (
-    <>
+
       <MDBContainer fluid>
-        <center>
 
           <MDBCard className='text-black m-5' style={{ borderRadius: '10px', height: '10%', width: '50%', marginLeft: '100%' }}>
             <MDBCardBody>
@@ -159,10 +161,10 @@ const Signup = () => {
                     <MDBIcon fas icon="phone me-3" size='lg' />
                     <MDBInput
                       label='Mobile no'
-                      id='mobile'
-                      type=''
-                      name="mobile"
-                      value={data.mobile}
+                      id='phonenumber'
+                      type='text'
+                      name="phonenumber"
+                      value={data.phonenumber}
                       onChange={handleChange}
                     />
                   </div>
@@ -171,7 +173,7 @@ const Signup = () => {
                     marginLeft: "3%",
                     display: "flex"
                   }}>
-                    {submit && !data.mobile && <p>Moible No required.</p> || submit && !validatePhoneNum(data.mobile) && <p>Please Enter Valid Mobile No!</p>}
+                    {submit && !data.phonenumber && <p>Moible No required.</p> || submit && !validatePhoneNum(data.phonenumber) && <p>Please Enter Valid Mobile No!</p>}
                   </label>
 
                   <div className="d-flex flex-row align-items-center mb-4">
@@ -179,7 +181,7 @@ const Signup = () => {
                     <MDBInput
                       label='Address'
                       id='address'
-                      type=''
+                      type='text'
                       name="address"
                       value={data.address}
                       onChange={handleChange} />
@@ -197,7 +199,7 @@ const Signup = () => {
                   </div>
 
                   <MDBBtn className='mb-4' size='lg' type="submit" onClick={handleSubmit}>Register</MDBBtn>
-                  <p className="text-center">Have already an account? <a href="/login">Login here</a></p>
+                  <p className="text-center">Have already an account? <a href="/">Login here</a></p>
                 </MDBCol>
 
                 <MDBCol md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
@@ -207,10 +209,8 @@ const Signup = () => {
               </MDBRow>
             </MDBCardBody>
           </MDBCard>
-        </center>
       </MDBContainer>
      
-    </>
   )
 }
 

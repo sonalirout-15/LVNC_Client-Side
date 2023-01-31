@@ -86,7 +86,7 @@ const SubcategoryData = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="trending">
+                      {/* <div className="trending">
                         <h2 className="mb-4 text-primary font-weight-600">
                           Trending
                         </h2>
@@ -135,7 +135,7 @@ const SubcategoryData = () => {
                             <span className="mr-2">Photo </span>10 Minutes ago
                           </p>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>

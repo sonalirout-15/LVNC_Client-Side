@@ -14,7 +14,6 @@ const Header = () => {
     },[])
 
     return (
-        <>
             <div className="container-scroller">
                 <div className="main-panel">
                     <div className="flash-news-banner">
@@ -36,7 +35,6 @@ const Header = () => {
                 </div>
             </div>
 
-        </>
     )
 }
 

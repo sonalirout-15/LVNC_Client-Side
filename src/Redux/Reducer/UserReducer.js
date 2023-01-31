@@ -25,11 +25,16 @@ const userReducer = (state = initialState, action) => {
                 loading: false,
                 userLogin: action.payload
             }
+        case types.CREATE_USER_SUCCESS: 
+            return{
+                ...state,
+                loading: false,
+                user : action.payload
+            }
         case types.USER_CHANGE_PASSWORD_SUCCESS:
         case types.USER_RESET_PASSWORD_SUCCESS:
         case types.USER_FORGOT_PASSWORD_SUCCESS:
         case types.USER_LOGOUT_SUCCESS:
-        case types.CREATE_USER_SUCCESS:
             return {
                 ...state,
                 loading: true

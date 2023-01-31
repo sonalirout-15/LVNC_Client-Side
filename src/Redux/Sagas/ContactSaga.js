@@ -9,6 +9,7 @@ import * as types from '../ActionTypes/ContactActionType';
 import Swal from 'sweetalert2';
 import { conatctUsApi } from '../APIS/ContactApi';
 import { contactUsError, contactUsSuccess } from '../Actions/ContactAction';
+
 const Toast = Swal.mixin({
     toast: true,
     position: "top-end",
@@ -19,7 +20,7 @@ const Toast = Swal.mixin({
 export function* onCreateContactUsStartAsync({ payload }) {
     try {
         const response = yield call(conatctUsApi, payload)
-        if (response.data.message === "Success") {
+        if (response.data.status === 200) {
             yield put(contactUsSuccess(response.data))
             Toast.fire({
                 icon: "success",
@@ -28,15 +29,15 @@ export function* onCreateContactUsStartAsync({ payload }) {
         } else {
             Toast.fire({
                 icon: "error",
-                title: response.data.errors,
+                title: response.data.errors.message,
             });
         }
     } catch (error) {
         yield put(contactUsError(error.response.data))
-        Toast.fire({
-            icon: "error",
-            title: error.response.data.errors,
-        });
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.message,
+            });
     }
 }
 

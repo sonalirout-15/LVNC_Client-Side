@@ -7,10 +7,16 @@ import {
     all,
     takeEvery,
 } from "redux-saga/effects";
+import Swal from 'sweetalert2';
 
 import { getSingleChildSubcategoryApi, loadChildSubcategoryApi } from '../APIS/ChildSubcategoryApi';
 import { getSingleChildSubcategoryError, getSingleChildSubcategorySuccess, loadChildSubcategoryError, loadChildSubcategorySuccess, } from '../Actions/ChildSubcategoryAction';
-
+const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 4000,
+})
 
 
 export function* onLoadChildSubcategoryStartAsync() {

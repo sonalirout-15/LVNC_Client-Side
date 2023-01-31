@@ -31,7 +31,7 @@ const Contact = () => {
         setData(data)
         if (data.name !== '' && data.email !== '' && data.title !== '') {
             var contactusData = {
-                username: data.name,
+                name: data.name,
                 email: data.email,
                 title: data.title
             }
@@ -70,14 +70,14 @@ const Contact = () => {
                                                                     marginLeft: '40%',
                                                                     display: "flex"
                                                                 }}>
-                                                                    {submit && !data.title && <small className="p-invalid">Title required.</small>}
+                                                                    {submit && !data.title && <p>Title required.</p>}
                                                                 </label>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div className="row">
                                                         <div className="col-sm-6">
-                                                            <div class="form-group">
+                                                            <div className="form-group">
                                                                 <input
                                                                     type="text"
                                                                     className="form-control"
@@ -93,7 +93,7 @@ const Contact = () => {
                                                                     marginLeft: '40%',
                                                                     display: "flex"
                                                                 }}>
-                                                                    {submit && !data.name && <small className="p-invalid">Username required.</small>}
+                                                                    {submit && !data.name && <p>Name required.</p>}
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -103,7 +103,6 @@ const Contact = () => {
                                                                     type="email"
                                                                     className="form-control"
                                                                     id="email"
-                                                                    aria-describedby="email"
                                                                     placeholder="Email *"
                                                                     name="email"
                                                                     value={data.email}
@@ -114,7 +113,7 @@ const Contact = () => {
                                                                     marginLeft: '40%',
                                                                     display: "flex"
                                                                 }}>
-                                                                    {submit && !data.email && <small className="p-invalid">Email required.</small> || submit && !validateEmail(data.email) && <small className="p-invalid">Please Enter Valid Email!</small>}
+                                                                    {submit && !data.email && <p>Email required.</p> || submit && !validateEmail(data.email) && <p>Please Enter Valid Email!</p>}
                                                                 </label>
                                                             </div>
                                                         </div>

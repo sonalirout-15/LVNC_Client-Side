@@ -41,18 +41,13 @@ export function* onUserLoginStartAsync({ payload }) {
     try {
         const response = yield call(userLoginApi, payload);
         if (response.data.status === 200) {
-            localStorage.setItem("USER", response.data.data.token);
+            localStorage.setItem("USER", response.data.data.token)
             yield put(userLoginSuccess(response.data));
             Toast.fire({
                 icon: "success",
                 title: response.data.message,
             });
-            } else {
-                Toast.fire({
-                    icon: "error",
-                    title: response.data.message,
-                });
-        }
+            }
     } catch (error) {
         yield put(userLoginError(error.response));
         Toast.fire({
@@ -79,6 +74,10 @@ export function* onUserChangePasswordStartAsync({ payload }) {
         }
     } catch (error) {
         yield put(userChangePasswordError(error.response))
+        Toast.fire({
+            icon: "error",
+            title: error.response.data.message,
+        });
     }
 }
 
@@ -90,11 +89,6 @@ export function* onUserResetPasswordStartAsync({ payload }) {
             yield put(userResetPasswordSuccess(response.data))
             Toast.fire({
                 icon: "success",
-                title: response.data.message,
-            });
-        } else {
-            Toast.fire({
-                icon: "error",
                 title: response.data.message,
             });
         }
@@ -116,12 +110,8 @@ export function* onUserForgotPasswordStartAsync({ payload }) {
                 icon: "success",
                 title: response.data.message,
             });
-        } else {
-            Toast.fire({
-                icon: "error",
-                title: response.data.message,
-            });
-        }
+        } 
+        
     } catch (error) {
         yield put(userForgotPasswordError(error.response))
         Toast.fire({
@@ -131,41 +121,37 @@ export function* onUserForgotPasswordStartAsync({ payload }) {
     }
 }
 
-export function* onUserLogoutStartAsync() {
-    try {
-        localStorage.removeItem("USER")
-        const response = yield call(userLogoutStart)
-        if (response.data.status === 200) {
-            yield put(userLogoutSuccess(response.data))
-            Toast.fire({
-                icon: "success",
-                title: response.data.message,
-            });
-        } else {
-            Toast.fire({
-                icon: "error",
-                title: response.data.message,
-            });
-        }
-    } catch (error) {
-        yield put(userLogoutError(error.response))
-    }
-}
+// export function* onUserLogoutStartAsync() {
+//     try {
+//         localStorage.removeItem("USER")
+//         const response = yield call(userLogoutStart)
+//         if (response.data.status === 200) {
+//             yield put(userLogoutSuccess(response.data))
+//             Toast.fire({
+//                 icon: "success",
+//                 title: response.data.message,
+//             });
+//         } else {
+//             Toast.fire({
+//                 icon: "error",
+//                 title: response.data.message,
+//             });
+//         }
+//     } catch (error) {
+//         yield put(userLogoutError(error.response))
+//     }
+// }
 
 export function* onCreateUserStartAsync({ payload }) {
     try {
         const response = yield call(createUserApi, payload)
-        if (response.data.message === "Success") {
+        console.log('Response~~~~~~~~~~~~~~~>>>', response.data)
+        if (response.data.status === 200) {
             yield put(createUserSuccess(response.data))
             Toast.fire({
                 icon: "success",
-                title: response.message,
+                title: response.data.message,
             })
-        } else {
-            Toast.fire({
-                icon: "error",
-                title: response.errors.name,
-            });
         }
     } catch (error) {
         yield put(createUserError(error.response))
@@ -190,10 +176,10 @@ export function* onCreateUserStartAsync({ payload }) {
                 icon: "error",
                 title: error.response.data.errors.confirm_password,
             });
-        } else if(error.response.data.errors.mobile) {
+        } else if(error.response.data.errors.phonenumber) {
             Toast.fire({
                 icon: "error",
-                title: error.response.data.errors.mobile,
+                title: error.response.data.errors.phonenumber,
             });
         } else if(error.response.data.errors.address){
             Toast.fire({
@@ -226,9 +212,9 @@ export function* onUserForgotPassword() {
     yield takeLatest(types.USER_FORGOT_PASSWORD_START, onUserForgotPasswordStartAsync);
 }
 
-export function* onUserLogout() {
-    yield takeLatest(types.USER_LOGOUT_START, onUserLogoutStartAsync);
-}
+// export function* onUserLogout() {
+//     yield takeLatest(types.USER_LOGOUT_START, onUserLogoutStartAsync);
+// }
 
 export function* onCreateUser() {
     yield takeLatest(types.CREATE_USER_START, onCreateUserStartAsync)
@@ -239,7 +225,7 @@ const userSagas = [
     fork(onUserChangePassword),
     fork(onUserResetPassword),
     fork(onUserForgotPassword),
-    fork(onUserLogout),
+    // fork(onUserLogout),
     fork(onCreateUser),
 ]
 

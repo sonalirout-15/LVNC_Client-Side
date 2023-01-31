@@ -87,7 +87,7 @@ const Advertise = () => {
                             <div className="row mb">
                               <div className="col-sm-8">
                                 <h1 className="font-weight-600 mb-1">
-                               ACTION
+                                      ACTION
                                 </h1>
                                 <h5>Highest engagement score across Channel</h5>
                               </div>

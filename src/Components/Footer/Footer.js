@@ -30,7 +30,6 @@ const Footer = () => {
     }, [postData])
 
     return (
-        <>
             <footer>
                 <div className="footer-top">
                     <div className="container">
@@ -117,7 +116,6 @@ const Footer = () => {
                     </div>
                 </div>
             </footer>
-        </>
     )
 }
 

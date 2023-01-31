@@ -89,6 +89,10 @@ body {
 [tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0 !important;
 }
+/* .login-container {
+  background-image: url("../images/BackgroundImage/bgWorldImg.jpeg");
+
+} */
 
 hr {
   box-sizing: content-box;
@@ -10712,6 +10716,7 @@ header .navbar-bottom .navbar-toggler {
 
 .aboutus-wrapper {
   padding: 0 160px;
+  justify-content: end;
 }
 
 @media (max-width: 999px) {

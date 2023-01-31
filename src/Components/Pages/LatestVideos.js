@@ -16,7 +16,7 @@ const LatestVideo = () => {
 
 
     return (
-        <div className="col-lg-5 stretch-card grid-margin">
+        <div className="col-lg-9 stretch-card grid-margin" style={{margin: '110px'}}>
         <div className="card">
           <div className="card-body">
               <div className="row">

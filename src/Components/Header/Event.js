@@ -2,7 +2,6 @@ import React from "react";
 
 const Event = () => {
   return (
-    <>
       <div className="container-scroller">
         <div className="content-wrapper">
           <div className="container">
@@ -56,7 +55,6 @@ const Event = () => {
           </div>
         </div>
       </div>
-    </>
   )
 }
 
