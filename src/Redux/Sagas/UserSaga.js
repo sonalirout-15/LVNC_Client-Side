@@ -60,24 +60,21 @@ export function* onUserLoginStartAsync({ payload }) {
 export function* onUserChangePasswordStartAsync({ payload }) {
     try {
         const response = yield call(userChangePasswordApi, payload);
+        console.log('RESPONSE~~~~~~~~~~~>>>', response.data)
         if (response.data.status === 200) {
             yield put(userChangePasswordSuccess(response.data))
             Toast.fire({
                 icon: "success",
                 title: response.data.message,
             });
-        } else {
-            Toast.fire({
-                icon: "error",
-                title: response.data.message,
-            });
-        }
+        } 
+        
     } catch (error) {
         yield put(userChangePasswordError(error.response))
-        Toast.fire({
-            icon: "error",
-            title: error.response.data.message,
-        });
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.message,
+            });       
     }
 }
 
@@ -85,7 +82,6 @@ export function* onUserResetPasswordStartAsync({ payload }) {
     try {
         const response = yield call(userResetPasswordApi, payload);
         if (response.data.status === 200) {
-            localStorage.setItem("USER", JSON.parse(JSON.stringify(response.data.data.token)))
             yield put(userResetPasswordSuccess(response.data))
             Toast.fire({
                 icon: "success",
@@ -94,10 +90,11 @@ export function* onUserResetPasswordStartAsync({ payload }) {
         }
     } catch (error) {
         yield put(userResetPasswordError(error.response))
-        Toast.fire({
-            icon: "error",
-            title: error.response.data.message,
-        });
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.message,
+            });
+       
     }
 }
 
@@ -114,10 +111,17 @@ export function* onUserForgotPasswordStartAsync({ payload }) {
         
     } catch (error) {
         yield put(userForgotPasswordError(error.response))
-        Toast.fire({
-            icon: "error",
-            title: error.response.data.message,
-        });
+        if(error.response.data.errors.email) {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.email,
+            });
+        } else {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.message,
+            });
+        }
     }
 }
 

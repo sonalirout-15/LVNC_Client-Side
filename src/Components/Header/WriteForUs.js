@@ -26,7 +26,6 @@ const WriteForUs = () => {
                       all over the internet.Lokvishwas news channel is taking blog/articles/listicles to publish on our website, for
                       which we keep quality as equivalence from your side. Our experts get your content publish in a very well optimized
                       way to rank better and gain attention across globe.
-
                     </p>
                     <p className="font-weight-600 fs-13 ">
                       If you’re surprised of reading the word global attention, then you have to go through our website and it’s
@@ -45,7 +44,6 @@ const WriteForUs = () => {
                       included with credits/source if it’s not your own.If there’s a tweak/modification required on the content you share,
                       then our content review team will do the appropriate changes for better of your content and our website quality.
                     </p>
-
 
                     <h2>How to Submit Your Article?</h2>
                     <p className="font-weight-600 fs-13 ">

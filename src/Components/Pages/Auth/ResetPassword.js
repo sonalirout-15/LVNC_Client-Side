@@ -8,14 +8,16 @@ import {
     MDBCardBody,
     MDBInput,
 } from 'mdb-react-ui-kit';
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router-dom";
-import { userChangePasswordStart } from '../../../Redux/Actions/UserAction';
+import { userResetPasswordStart } from '../../../Redux/Actions/UserAction';
 
 const ResetPassword = () => {
     const history = useHistory()
     const dispatch = useDispatch();
     const [submit, setSubmit] = useState();
+    const resetPassData = useSelector((state) => state);
+    console.log('RESET-PASSWORD DATA ~~~~~~~~~~~~~~~~>>>>', resetPassData)
     const [data, setData] = useState({
         newPassword: "",
         confirmPassword: ""
@@ -38,7 +40,7 @@ const handleSubmit = (e) => {
           newPassword: data.newPassword,
           confirmPassword: data.confirmPassword,
       }
-      dispatch(userChangePasswordStart(resetPasswordData))
+      dispatch(userResetPasswordStart(resetPasswordData))
   }
 };
 
@@ -51,7 +53,7 @@ const handleSubmit = (e) => {
                         <MDBCard className='bg-white my-5 mx-auto' style={{ borderRadius: '1rem', maxWidth: '500px' }}>
                             <MDBCardBody className='p-5 w-100 d-flex flex-column'>
 
-                                <h2 className="fw-bold mb-2 text-center">Change Password</h2>
+                                <h2 className="fw-bold mb-2 text-center">Reset Password</h2>
                                 <p className="text-white-50 mb-3">Please enter your Current Password  and New Password!</p>
                                 
                                 <MDBInput

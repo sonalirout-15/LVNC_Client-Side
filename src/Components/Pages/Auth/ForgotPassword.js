@@ -8,13 +8,15 @@ import {
     MDBCardBody,
     MDBInput,
 } from 'mdb-react-ui-kit';
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router-dom";
 import { userForgotPasswordStart } from '../../../Redux/Actions/UserAction';
 
 const ForgotPassword = () => {
     const history = useHistory()
     const dispatch = useDispatch();
+    const forgotPassData = useSelector((state) => state?.user?.userForgotPassword);
+    console.log('FORGOT-PASSWORD~~~~~~~~~~~>>>', forgotPassData)
     const [submit, setSubmit] = useState();
     const [data, setData] = useState({
       email: "",

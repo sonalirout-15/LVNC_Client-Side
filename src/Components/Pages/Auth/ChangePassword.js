@@ -8,7 +8,7 @@ import {
     MDBCardBody,
     MDBInput,
 } from 'mdb-react-ui-kit';
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router-dom";
 import { userChangePasswordStart } from '../../../Redux/Actions/UserAction';
 
@@ -16,6 +16,7 @@ const ChangePassword = () => {
     const history = useHistory()
     const dispatch = useDispatch();
     const [submit, setSubmit] = useState();
+    const changePassData = useSelector((state) => state?.user?.userChangePassword);
     const [data, setData] = useState({
         currentPassword: "",
         newPassword: ""
@@ -42,6 +43,9 @@ const handleSubmit = (e) => {
   }
 };
 
+if(changePassData?.message === "Password change succesfully"){
+    history.push('/')
+}
 
     return (
             <MDBContainer fluid>

@@ -3,6 +3,9 @@ import * as types from '../ActionTypes/UserActionType';
 const initialState = {
     user: [],
     userLogin: [],
+    userChangePassword: [],
+    userResetPassword: [],
+    userForgotPassword:[],
     loading: false,
     error: null
 }
@@ -32,8 +35,23 @@ const userReducer = (state = initialState, action) => {
                 user : action.payload
             }
         case types.USER_CHANGE_PASSWORD_SUCCESS:
-        case types.USER_RESET_PASSWORD_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                userChangePassword: action.payload
+            }
+        case types.USER_RESET_PASSWORD_SUCCESS: 
+            return {
+                ...state,
+                loading: false,
+                userResetPassword: action.payload
+            }
         case types.USER_FORGOT_PASSWORD_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                userForgotPassword : action.payload
+            }
         case types.USER_LOGOUT_SUCCESS:
             return {
                 ...state,

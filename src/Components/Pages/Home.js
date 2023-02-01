@@ -58,10 +58,17 @@ const Home = () => {
   const [latestnewsdata, setLatestNewsData] = useState(latestNewsData)
 
   const campaignsData = useSelector((state) => state?.campaign?.campaning?.CampaningData?.rows);
-  const [state , setState] = useState(campaignsData)
-  // const firstData = campaignsData.slice(0,10);
-  // console.log('FIRST-DATA~~~~~~~~~~~>>>', firstData);
-  const [campaigndata, setCampaignData] = useState(campaignsData)
+  const [campaigndata, setCampaignData] = useState(campaignsData);
+  const firstData = []
+  campaigndata && campaigndata.map((item) => {
+    firstData.push({
+      title : item.title[0]
+    })
+    // console.log('ITEMS~~~~~~~~~~~>>>', item)
+  })
+  // const length = campaignsData.length;
+  // console.log('Length~~~~~~~~~~>>>', length);
+
 
   useEffect(() => {
     setBannnerData(bannerImageData)
@@ -271,8 +278,9 @@ const Home = () => {
                             <video width='300' height='50'
                                     controls>
                                     <source src={item.video} 
-                                    type="video/MP4/MKV/AVI" 
-                                    classNameName='img-fluid'/>
+                                    type="video/MP4" 
+                                    className='img-fluid'
+                                    />
                             </video>
                             </div>
                           </div>
@@ -299,6 +307,7 @@ const Home = () => {
                           Sport light
                         </div>
                         <div className="row">
+                        
                               <div className="col-xl-6 col-lg-8 col-sm-6">
                               <div className="rotate-img">
                                 <img

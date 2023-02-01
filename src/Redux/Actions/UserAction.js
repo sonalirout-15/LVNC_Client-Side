@@ -19,8 +19,9 @@ export const userChangePasswordStart = (userChangePassword) => ({
     type: types.USER_CHANGE_PASSWORD_START,
     payload: userChangePassword
 })
-export const userChangePasswordSuccess = () => ({
-    type: types.USER_CHANGE_PASSWORD_SUCCESS
+export const userChangePasswordSuccess = (userChangePassword) => ({
+    type: types.USER_CHANGE_PASSWORD_SUCCESS,
+    payload: userChangePassword
 })
 export const userChangePasswordError = (error) => ({
     type: types.USER_CHANGE_PASSWORD_ERROR,
@@ -31,8 +32,9 @@ export const userResetPasswordStart = (userResetPassword) => ({
     type: types.USER_RESET_PASSWORD_START,
     payload: userResetPassword
 })
-export const userResetPasswordSuccess = () => ({
-    type: types.USER_RESET_PASSWORD_SUCCESS
+export const userResetPasswordSuccess = (userResetPassword) => ({
+    type: types.USER_RESET_PASSWORD_SUCCESS,
+    payload: userResetPassword
 })
 export const userResetPasswordError = (error) => ({
     type: types.USER_RESET_PASSWORD_ERROR,
@@ -43,8 +45,9 @@ export const userForgotPasswordStart = (userForgotPassword) => ({
     type: types.USER_FORGOT_PASSWORD_START,
     payload: userForgotPassword
 })
-export const userForgotPasswordSuccess = () => ({
-    type: types.USER_FORGOT_PASSWORD_SUCCESS
+export const userForgotPasswordSuccess = (userForgotPassword) => ({
+    type: types.USER_FORGOT_PASSWORD_SUCCESS,
+    payload: userForgotPassword
 })
 export const userForgotPasswordError = (error) => ({
     type: types.USER_FORGOT_PASSWORD_ERROR,
