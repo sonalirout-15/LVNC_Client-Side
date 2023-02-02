@@ -6,11 +6,11 @@ import { loadBannerImageStart } from "../../Redux/Actions/BannerImageAction";
 import { loadLatestNewsStart } from "../../Redux/Actions/LatestNewsAction";
 import { loadMattersStart } from "../../Redux/Actions/MattersAction";
 import { loadCampaingStart } from "../../Redux/Actions/CampaignAction";
+import { loadChildSubcategoryStart } from "../../Redux/Actions/ChildSubcategoryAction";
 
 const Home = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [showFullDescription, setFullDescription] = useState(false);
 
   useEffect(() => {
     dispatch(loadBannerImageStart())
@@ -34,15 +34,12 @@ const Home = () => {
     dispatch(loadCampaingStart())
   }, [])
 
+  useEffect(() => {
+    dispatch(loadChildSubcategoryStart())
+  }, [])
   // const description = showFullDescription
   //   ? items.description
   //   : items.description.slice(0, 20);
-
-    const showDescription = (items) => {
-    const description = showFullDescription
-    ? items.description
-    : items.description.slice(0, 20);
-    }
 
 
   const bannerImageData = useSelector((state) => state?.bannerImage?.bannerImageData?.BannerData)
@@ -58,14 +55,15 @@ const Home = () => {
   const [latestnewsdata, setLatestNewsData] = useState(latestNewsData)
 
   const campaignsData = useSelector((state) => state?.campaign?.campaning?.CampaningData?.rows);
+  console.log('CAMPAIGN-DATA~~~~~~~~~~~>>', campaignsData)
   const [campaigndata, setCampaignData] = useState(campaignsData);
-  const firstData = []
-  campaigndata && campaigndata.map((item) => {
-    firstData.push({
-      title : item.title[0]
-    })
+
+  const childSubcategoryData = useSelector((state) => state?.childSubcategory?.childSubcatgeory?.rows);
+  console.log('Child-SubcategoryData~~~~~~~~~~~>>', childSubcategoryData);
+  const [childSubcateData , setChildSubcateData] = useState(childSubcategoryData)
+
     // console.log('ITEMS~~~~~~~~~~~>>>', item)
-  })
+  
   // const length = campaignsData.length;
   // console.log('Length~~~~~~~~~~>>>', length);
 
@@ -108,6 +106,10 @@ const Home = () => {
   useEffect(() => {
     setCampaignData(campaignsData)
   }, [campaignsData])
+
+  useEffect(() => {
+    setChildSubcateData(childSubcategoryData)
+  }, [childSubcategoryData])
 
   return (
     <div className="container-scroller">
@@ -307,27 +309,29 @@ const Home = () => {
                           Sport light
                         </div>
                         <div className="row">
-                        
+                        {campaigndata && campaigndata.map((item) => {
+                          return (
                               <div className="col-xl-6 col-lg-8 col-sm-6">
                               <div className="rotate-img">
                                 <img
-                                  src=''
+                                  src={item.image}
                                   alt="thumb"
                                   className="img-fluid"
                                 />
                               </div>
                               <h2 className="mt-3 text-primary mb-2">
-                                
+                                {item.title}
                               </h2>
                               <p className="fs-13 mb-1 text-muted">
                                 <span className="mr-2">Photo </span>10 Minutes ago
                               </p>
                               <p className="my-3 fs-15">
-                             
+                             {item.description}
                               </p>
-                              <a onClick={showFullDescription} className="font-weight-600 fs-16 text-dark">{showFullDescription ? "Less" : "Read"}</a>
+                              {/* <a onClick={showFullDescription} className="font-weight-600 fs-16 text-dark">{showFullDescription ? "Less" : "Read"}</a> */}
                             </div>
-                            
+                          )
+                        })}
                           <div className="col-xl-6 col-lg-4 col-sm-6">
                             <div className="border-bottom pb-3 mb-3">
                               <h3 className="font-weight-600 mb-0">
@@ -348,27 +352,32 @@ const Home = () => {
                       
                       <div className="col-xl-6">
                         <div className="row">
+                          {childSubcateData && childSubcateData.map((item) => {
+                            return(
+
                           <div className="col-sm-6">
                             <div className="card-title">
-                              Sport light
+                              News Hub
                             </div>
                             <div className="border-bottom pb-3">
                               <div className="rotate-img">
                                 <img
-                                  src="assets/images/dashboard/home_17.jpg"
+                                  src={item.image}
                                   alt="thumb"
                                   className="img-fluid"
                                 />
                               </div>
                               <p className="fs-16 font-weight-600 mb-0 mt-3">
-                                Kaine: Trump Jr. may have
+                               {item.title}
                               </p>
                               <p className="fs-13 text-muted mb-0">
-                                <span className="mr-2">Photo </span>10 Minutes ago
+                                <span className="mr-2">Photo </span>{item.updated_at}
                               </p>
                             </div>
                           </div>
-                          <div className="col-sm-6">
+                            )
+                          })}
+                          {/* <div className="col-sm-6">
                             <div className="card-title">
                               Celebrity news
                             </div>
@@ -401,7 +410,7 @@ const Home = () => {
                                 </div>
                               </div>
                             </div>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </div>

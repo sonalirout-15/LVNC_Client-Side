@@ -62,9 +62,9 @@ const Footer = () => {
                             <div className="col-sm-4">
                                 <h4 className="font-weight-bold mb-3">RECENT POSTS</h4>
                                 <div className="row">
-                                    <div className="col-sm-12">
-                                        <div className="footer-border-bottom pb-2">
                                         {postData && postData.map((item) => (
+                                    <div className="col-sm-18">
+                                        <div className="footer-border-bottom pb-2">
                                                 <div className="row">
                                                     <div className="col-3">
                                                         <img
@@ -73,15 +73,15 @@ const Footer = () => {
                                                             className="img-fluid"
                                                         />
                                                     </div>
-                                                    <div className="col-9">
-                                                        <h5 className="font-weight-100">
+                                                    <div className="col-5">
+                                                        <h5 className="font-weight-600">
                                                             {item.title}
                                                         </h5>
                                                     </div>
                                                 </div>
-                                            ))}
                                         </div>
                                     </div>
+                                ))}
                                 </div>
                             </div>
                             <div className="col-sm-3">

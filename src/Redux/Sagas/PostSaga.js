@@ -14,8 +14,9 @@ import { loadPostError, loadPostSuccess } from '../Actions/PostActions';
 export function* onLoadPostStartAsync() {
     try {
         const response = yield call(loadPostApi);
+        console.log('POST~~~~~~~~~~>>>', response)
         if (response.status === 200) {
-            yield put(loadPostSuccess(response.data.mettersData))
+            yield put(loadPostSuccess(response.data?.postsData))
         }
     } catch (error) {
         yield put(loadPostError(error.response))

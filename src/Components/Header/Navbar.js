@@ -32,17 +32,6 @@ const Navbar = () => {
     }, [categories])
     
     
-    // const handleMouseOver = (item) => {
-    //     item?.map((cat_id) => {
-    //         // console.log('ITEMS~~~~~~~~~~>>>>', item)
-    //         dispatch(getSingleCategoryStart(cat_id?.category_ref_id))
-    //         // console.log('ITEMS~~~~~~~~~~>>>>', cat_id?.category_ref_id)
-    //     })
-    // }
-
-    // const singleCategory = useSelector((state) => state?.categoryData?.categoryData[0]?.Subcategories);
-    // console.log('SINGLE-CATEGORY~~~~~~~~~~ >>>>', singleCategory)
-    
     return (
             <header id="header">
                 <div className="container">
@@ -58,15 +47,15 @@ const Navbar = () => {
                                     <li className="nav-item">
                                         <Link to="/about" className="nav-link">About</Link>
                                     </li>
-                                    <li className="nav-item">
+                                    {/* <li className="nav-item">
                                         <Link to="/event" className="nav-link">Events</Link>
-                                    </li>
+                                    </li> */}
                                     <li className="nav-item">
                                         <Link to="/write-for-us" className="nav-link">Write for Us</Link>
                                     </li>
-                                    <li className="nav-item">
+                                    {/* <li className="nav-item">
                                         <Link to="/in-the-press" className="nav-link">In the Press</Link>
-                                    </li>
+                                    </li> */}
                                 </ul>
                                 <ul className="navbar-top-right-menu">
                                     <li className="nav-item">

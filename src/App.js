@@ -1,4 +1,6 @@
 import './App.css';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { Route, Switch, useLocation } from 'react-router-dom';
 import { MDBSpinner } from 'mdb-react-ui-kit';
 import Home from './Components/Pages/Home';
@@ -23,8 +25,6 @@ import Subcategory from './Components/Pages/Subcategory';
 import SubcategoryData from './Components/Pages/SubcategoryData';
 import ChildSubcategory from './Components/Pages/ChildSubcategory';
 import MattersData from './Components/Pages/MattersData';
-import { useState } from 'react';
-import { useEffect } from 'react';
 
 function App() {
   let location = useLocation();

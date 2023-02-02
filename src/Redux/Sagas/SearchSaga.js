@@ -2,7 +2,7 @@ import { takeEvery, put } from "redux-saga/effects";
 import { CATEGORY_SEARCH } from '../ActionTypes/SearchActionType'
 
  function* categorySearch(data){
-    let result = yield fetch(`http://localhost:8080/api/categories?q=${data.query}`)
+    let result = yield fetch(`http://localhost:8080/categories/Search/api?q=${data.query}`)
     result = yield result.json();
     console.warn('action called', data)
     yield put({ type: CATEGORY_SEARCH, data: result})

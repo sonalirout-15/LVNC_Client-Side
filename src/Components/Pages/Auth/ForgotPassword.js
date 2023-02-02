@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     MDBBtn,
     MDBContainer,
@@ -12,40 +12,73 @@ import { useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router-dom";
 import { userForgotPasswordStart } from '../../../Redux/Actions/UserAction';
 
+const emailRegx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
 const ForgotPassword = () => {
     const history = useHistory()
     const dispatch = useDispatch();
-    const forgotPassData = useSelector((state) => state?.user?.userForgotPassword);
-    console.log('FORGOT-PASSWORD~~~~~~~~~~~>>>', forgotPassData)
-    const [submit, setSubmit] = useState();
-    const [data, setData] = useState({
+    const data = useSelector((state) => state?.user?.userForgotPassword);
+    console.log('FORGOT-PASSWORD~~~~~~~~~~~>>>', data)
+    const [submit, setsubmit] = useState(false)
+    const [formInputes, setformInputes] = useState({
       email: "",
-   });
+  })
 
-   const validateEmail = (email) => {
-    const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return pattern.test(String(email).toLowerCase())
+  const [ErrorInputes, setErrorInputes] = useState({ ...formInputes })
+  const handleChange = (e) => {
+      const { name, value } = e.target
+      setformInputes({ ...formInputes, [name]: value })
+      switch (name) {
+          case "email":
+              if (!value) {
+                  ErrorInputes.email = value.length > 0 ? "" : "Enter your email"
+              }
+              else {
+                  ErrorInputes.email = emailRegx.test(value) === false && "Enter your valid email"
+              }
+              break;
+          default:
+              break;
+      }
+      setErrorInputes(ErrorInputes)
   }
 
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setData({
-        ...data,
-        [e.target.name]: value,
-    })
+  function validate(value) {
+    if (!formInputes.email) {
+        ErrorInputes.email = "Enter email"
+    }
+    return ErrorInputes
 }
+useEffect(() => {
+  if (data.status === 200) {
+      setformInputes({
+      email: "",
+    })
+  }
+}, [data])
+
+useEffect(() => {
+  if (Object.keys(ErrorInputes).length === 0 && Object.keys(formInputes).length !== 0) {
+      console.log(ErrorInputes, "ErrorInputes")
+  }
+}, [])
 
 const handleSubmit = (e) => {
   e.preventDefault()
-  setSubmit(true);
-  setData(data)
-  if (data.email !== '') {
-      var forgotPasswordData = {
-          email: data.email,
+  setsubmit(true)
+  setErrorInputes(validate(formInputes));
+  if (formInputes.email !== "") {
+     if ( ErrorInputes.email.length == undefined) {
+      var ForgotPasswordPayload={
+          email:formInputes.email,
       }
-      dispatch(userForgotPasswordStart(forgotPasswordData))
-  }
-};
+      setTimeout(() => {
+          dispatch(userForgotPasswordStart(ForgotPasswordPayload));
+        }, 2000); 
+     }
+   }
+}
+
 
 
     return (
@@ -73,7 +106,7 @@ const handleSubmit = (e) => {
                                                     marginLeft: "5%",
                                                     display: "flex"
                                                 }}>
-                                                   {submit && !data.email && <p>Email required.</p> || submit && !validateEmail(data.email) && <p>Please Enter Valid Email!.</p>}
+                                                   <span className='cstm_error'>{ErrorInputes.email}</span>
                                     </label>
                                 
                                 <MDBBtn size='lg' type="submit" onClick={handleSubmit}>
